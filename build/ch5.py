@@ -125,7 +125,7 @@ PAGE = dict(
  title='좌표 첫걸음 5장 지구 위의 좌표 — 위도·경도와 지도 그리기 | 나는 어디에 있는가?',
  desc='좌표 첫걸음 5장. 지구본 자에서 반지름을 고정한 위도·경도, 위도마다 달라지는 경도 1도의 길이 111.2 km × cos(위도), 둥근 지구를 평평한 지도로 옮기는 매핑과 메르카토르 지도의 넓이 부풀림, 그리고 지구 배송센터 게임.',
  nav=NAV,
- cover=dict(cap='좌표 첫걸음 · 5교시', chip='5장 지구 위의 좌표 — 위도·경도와 지도 그리기', cast=['fly_point', 'doc_board', 'asst_smile', 'robo_calc', 'sia_explain', 'moa_report', 'x1_hint', 'x2_hint', 'x3_hint'], motif='globe'),
+ cover=dict(cap='좌표 첫걸음 · 5교시', chip='5장 지구 위의 좌표 — 위도·경도와 지도 그리기', cast=['fly_point', 'doc_board', 'asst_smile', 'robo_calc', 'sia_explain', 'moa_report', 'x1_hint', 'x2_hint', 'x3_hint'], alt='탁자 위 지구본과 평평한 지도. 박사는 귤껍질을 나선으로 벗기고, 하루는 빨간 핀이 꽂힌 지구본을, 주판봇은 지도 위 북쪽 섬을 자로 잰다.', motif='globe'),
  eyebrow='좌표 첫걸음 · 5장 · 최적화 첫걸음의 자매편 <span class="diff">난이도: 오르막</span>',
  h1='5장 지구 위의 좌표 — 위도·경도와 지도 그리기',
  question='지도 앱의 파란 점은 어떤 숫자이고, 지도는 그 점을 어떻게 종이에 옮길까?',

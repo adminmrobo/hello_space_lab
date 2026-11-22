@@ -119,7 +119,7 @@ PAGE = dict(
  title='좌표 첫걸음 3장 극좌표 — 거리와 방향으로 찍는 점 | 나는 어디에 있는가?',
  desc='좌표 첫걸음 3장. 관제실처럼 거리와 각도로 자리를 부르는 극좌표. (3, 4) = (5, 53.1°), 같은 각도 다른 피자 테두리, 12월과 1월을 이웃으로 만드는 시계판, 그리고 레이더 드론 게임.',
  nav=NAV,
- cover=dict(cap='좌표 첫걸음 · 3교시', chip='3장 극좌표 — 거리와 방향으로 찍는 점', cast=['fly_point', 'doc_board', 'asst_smile', 'robo_calc', 'sia_explain', 'moa_report', 'x1_hint', 'x2_hint', 'x3_hint'], motif='polar'),
+ cover=dict(cap='좌표 첫걸음 · 3교시', chip='3장 극좌표 — 거리와 방향으로 찍는 점', cast=['fly_point', 'doc_board', 'asst_smile', 'robo_calc', 'sia_explain', 'moa_report', 'x1_hint', 'x2_hint', 'x3_hint'], alt='관제탑이 된 강의실. 칠판의 둥근 레이더 화면과 빨간 표적을 박사가 가리키고, 하루는 크기가 다른 피자 두 판을, 주판봇은 드론을 날린다.', motif='polar'),
  eyebrow='좌표 첫걸음 · 3장 · 최적화 첫걸음의 자매편 <span class="diff">난이도: 오르막</span>',
  h1='3장 극좌표 — 거리와 방향으로 찍는 점',
  question='"여기서 북동쪽으로 5 km"도 좌표일까?',

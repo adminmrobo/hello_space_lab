@@ -32,7 +32,7 @@ out = ['# 그림 생성 지시문 — 좌표 첫걸음 (16비트 RPG 픽셀아�
  '## 저장 이름·반영', '| 파일 | 비율 | 쓰는 곳 |', '|---|---|---|']
 out += ['| img/%s.webp | 16:9 | %s (%s) |' % (k, w, p) for k, p, o, w, s in S]
 out += ['', '- 반영: 생성 PNG를 4로 나눈 원래 픽셀 격자(예 480×270)를 찾아 `NEAREST` 정수배로만 키운 무손실 WebP(1920×1080)로 저장하고 `.cover img{image-rendering:pixelated}`. 정수배가 아닌 크기나 손실 압축은 쓰지 않는다(흐려진다).',
- '- 지금 페이지 표지는 캔버스로 그린 **임시 표지**(모눈 + 주제 도형 + 캐릭터 팩)다. 그림을 받으면 각 페이지 `#cover .frame`의 캔버스를 `<img class="art">`로 바꾸고 `python3 code/make_og.py`로 공유 미리보기를 다시 만든다.',
+ '- 반영 완료(2026-11-23): 8장 모두 `img/cover_*.webp`로 들어갔고, 공유 미리보기는 `python3 code/make_og.py`가 같은 격자를 2배로 키운 960×540 PNG로 만든다.',
  '- 받은 뒤 ahnboat_lab_cover_status 명부에 등록.', '']
 for k, p, o, w, s in S:
     out += ['## %s — 16:9 · %s' % (k, w), '', '```text', H, '', s, '', CH, '', T, '```', '']

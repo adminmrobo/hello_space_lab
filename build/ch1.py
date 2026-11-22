@@ -141,7 +141,7 @@ PAGE = dict(
  title='좌표 첫걸음 1장 수직선 — 숫자 하나로 말하는 자리 | 나는 어디에 있는가?',
  desc='좌표 첫걸음 1장. 기준점·방향·눈금 세 가지로 위치를 숫자 하나에 담는 수직선. 길 위의 원점 바꾸기, 0층 없는 엘리베이터, 섭씨·화씨 두 자, 표준화 자까지 직접 움직여 봅니다.',
  nav=NAV,
- cover=dict(cap='좌표 첫걸음 · 1교시', chip='1장 수직선 — 숫자 하나로 말하는 자리', cast=['fly_point', 'doc_board', 'asst_smile', 'robo_calc', 'sia_explain', 'moa_report', 'x1_hint', 'x2_hint', 'x3_hint'], motif='line'),
+ cover=dict(cap='좌표 첫걸음 · 1교시', chip='1장 수직선 — 숫자 하나로 말하는 자리', cast=['fly_point', 'doc_board', 'asst_smile', 'robo_calc', 'sia_explain', 'moa_report', 'x1_hint', 'x2_hint', 'x3_hint'], alt='흰 강의실. 칠판의 긴 수직선과 빛나는 0 눈금을 박사가 가리키고, 하루는 온도계 두 개를, 주판봇은 엘리베이터 층을 세고, 초파리 연구원은 돋보기를 든다. 앞줄 시아·모아, 뒷줄 X1~X3.', motif='line'),
  eyebrow='좌표 첫걸음 · 1장 · 최적화 첫걸음의 자매편 <span class="diff">난이도: 산책</span>',
  h1='1장 수직선 — 숫자 하나로 말하는 자리',
  question='"나는 어디에 있는가?"에 숫자 하나로 답하려면 무엇을 먼저 정해야 할까?',

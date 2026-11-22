@@ -134,7 +134,7 @@ PAGE = dict(
  title='좌표 첫걸음 6장 데이터의 좌표 — 표 한 줄이 점 하나가 될 때 | 나는 어디에 있는가?',
  desc='좌표 첫걸음 6장. 고객 표의 한 줄을 특성 공간의 점으로 놓고, 단위가 다른 축은 표준화로 맞춰 가장 가까운 이웃을 찾고, 축이 여섯 개로 늘어도 같은 거리 공식을 쓰고, 좌표 위에 오차를 세워 최적화 첫걸음으로 넘어갑니다.',
  nav=NAV,
- cover=dict(cap='좌표 첫걸음 · 6교시', chip='6장 데이터의 좌표 — 표 한 줄이 점 하나가 될 때', cast=['fly_point', 'doc_board', 'asst_smile', 'robo_calc', 'sia_explain', 'moa_report', 'x1_hint', 'x2_hint', 'x3_hint'], motif='data'),
+ cover=dict(cap='좌표 첫걸음 · 6교시', chip='6장 데이터의 좌표 — 표 한 줄이 점 하나가 될 때', cast=['fly_point', 'doc_board', 'asst_smile', 'robo_calc', 'sia_explain', 'moa_report', 'x1_hint', 'x2_hint', 'x3_hint'], alt='칠판의 점 지도와 그릇 모양 곡면 위 빨간 공. 박사가 점에서 그릇을 가리키고, 하루는 쿠폰을 들고, 수강생 다섯이 박수를 친다.', motif='data'),
  eyebrow='좌표 첫걸음 · 6장 · 최적화 첫걸음의 자매편 <span class="diff">난이도: 오르막</span>',
  h1='6장 데이터의 좌표 — 표 한 줄이 점 하나가 될 때',
  question='고객·문장·사진처럼 장소가 아닌 것도 "어디에 있다"고 말할 수 있을까?',

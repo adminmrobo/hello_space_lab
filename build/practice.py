@@ -140,9 +140,7 @@ CSS = '''
 '''
 
 def build():
-    CAST = '<div class="cover" id="cover"><div class="frame"><canvas id="cvCover" aria-hidden="true"></canvas><span class="cap">좌표 첫걸음 · 마지막 장</span><span class="badge">임시 표지 · 픽셀 표지 준비 중</span><div class="cast4">' + \
-        ''.join(f'<img src="" data-mood="{k}" alt="" aria-hidden="true">' for k in ['fly_point', 'doc_board', 'asst_smile', 'robo_calc', 'sia_explain', 'moa_report']) + \
-        '</div><span class="cover-chip">마지막 장 · 실전 연습장 — 네 현장 운영하기</span></div></div>'
+    CAST = '<div class="cover" id="cover"><div class="frame"><img class="art" src="../img/cover_practice.webp" width="1920" height="1080" alt="밝은 관제실의 큰 화면 네 개(위선 위 드론, 레이더, 3차원 창고 선반, 고객 점 지도) 앞에서 연구실 식구들이 하나씩 조작하고, 박사가 가운데서 팔짱을 끼고 웃는다." fetchpriority="high"><span class="cap">좌표 첫걸음 · 마지막 장</span><span class="cover-chip">마지막 장 · 실전 연습장 — 네 현장 운영하기</span></div></div>'
     T = '좌표 첫걸음 마지막 장 · 실전 연습장 — 네 현장 운영하기 | 나는 어디에 있는가?'
     D = '좌표 첫걸음 마지막 장. 지구 배송센터·관제탑·물류창고·추천 매장 네 현장을 직접 운영하며 위도·경도, 극좌표, 공간좌표, 특성 공간과 표준화를 한 번에 복습하는 시뮬레이터 대시보드.'
     H = f'''<!DOCTYPE html>

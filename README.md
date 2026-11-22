@@ -51,7 +51,7 @@
 │  ├─ check_words.sh      금지 단어 0건 검사
 │  ├─ make_og.py · make_docs.py · shot.py
 ├─ docs/PLAN.md · TEACHING_REVIEW.md · IMAGE_PROMPTS.md
-├─ img/og/    공유 미리보기 (지금은 임시 표지를 찍은 그림)
+├─ img/      픽셀 표지 8장, og/ 공유 미리보기 960×540
 └─ cover_manifest.json   표지 현황판 연결
 ```
 
@@ -60,7 +60,7 @@
 
 ## 그림
 
-지금 표지는 캔버스로 그린 **임시 표지**입니다. 16비트 RPG 픽셀아트 표지 8장의 지시문은 `docs/IMAGE_PROMPTS.md`에 있습니다.
+16비트 RPG 픽셀아트 표지 8장(`img/cover_*.webp`, 480×270 격자를 NEAREST 4배로 키운 1920×1080 무손실 WebP)이 들어 있습니다. 지시문은 `docs/IMAGE_PROMPTS.md`.
 
 ## 저작권
 

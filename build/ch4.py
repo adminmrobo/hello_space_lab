@@ -119,7 +119,7 @@ PAGE = dict(
  title='좌표 첫걸음 4장 공간좌표 — 높이가 생기면 세 숫자 | 나는 어디에 있는가?',
  desc='좌표 첫걸음 4장. 바닥 그림자와 높이로 보는 (x, y, z), 피타고라스를 두 번 쓰는 공간 거리 (2, 3, 6) → 7, 같은 점을 모눈 자·원통 자·지구본 자로 읽기, 그리고 다른 자로 적힌 선반 주소를 찾는 드론 배송 게임.',
  nav=NAV,
- cover=dict(cap='좌표 첫걸음 · 4교시', chip='4장 공간좌표 — 높이가 생기면 세 숫자', cast=['fly_point', 'doc_board', 'asst_smile', 'robo_calc', 'sia_explain', 'moa_report', 'x1_hint', 'x2_hint', 'x3_hint'], motif='space'),
+ cover=dict(cap='좌표 첫걸음 · 4교시', chip='4장 공간좌표 — 높이가 생기면 세 숫자', cast=['fly_point', 'doc_board', 'asst_smile', 'robo_calc', 'sia_explain', 'moa_report', 'x1_hint', 'x2_hint', 'x3_hint'], alt='강의실 탁자 위 3층 건물 모형과 세 축 틀 안에 뜬 배송 드론, 바닥의 점선 그림자. 하루는 원통 모형, 초파리 연구원은 작은 지구본을 든다.', motif='space'),
  eyebrow='좌표 첫걸음 · 4장 · 최적화 첫걸음의 자매편 <span class="diff">난이도: 오르막</span>',
  h1='4장 공간좌표 — 높이가 생기면 세 숫자',
  question='3층 강의실의 내 자리는 1층 같은 자리와 무엇이 다를까?',

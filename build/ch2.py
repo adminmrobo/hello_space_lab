@@ -118,7 +118,7 @@ PAGE = dict(
  title='좌표 첫걸음 2장 좌표평면 — 두 숫자로 찍는 점 | 나는 어디에 있는가?',
  desc='좌표 첫걸음 2장. 강의실 좌석표로 배우는 순서쌍, 피타고라스로 재는 직선 거리와 골목 거리, 자리와 이동(화살표)의 차이, 그리고 거리 원으로 위치를 찾는 GPS식 보물찾기.',
  nav=NAV,
- cover=dict(cap='좌표 첫걸음 · 2교시', chip='2장 좌표평면 — 두 숫자로 찍는 점', cast=['fly_point', 'doc_board', 'asst_smile', 'robo_calc', 'sia_explain', 'moa_report', 'x1_hint', 'x2_hint', 'x3_hint'], motif='plane'),
+ cover=dict(cap='좌표 첫걸음 · 2교시', chip='2장 좌표평면 — 두 숫자로 찍는 점', cast=['fly_point', 'doc_board', 'asst_smile', 'robo_calc', 'sia_explain', 'moa_report', 'x1_hint', 'x2_hint', 'x3_hint'], alt='위에서 본 강의실. 모눈처럼 놓인 책상, 시아 자리에서 모아 자리로 곧게 나는 종이비행기와 꺾인 점선 길, 초파리 연구원이 든 겹치는 고리 세 개.', motif='plane'),
  eyebrow='좌표 첫걸음 · 2장 · 최적화 첫걸음의 자매편 <span class="diff">난이도: 산책</span>',
  h1='2장 좌표평면 — 두 숫자로 찍는 점',
  question='넓은 곳에서 "나는 어디에 있는가?"에 답하려면 숫자가 몇 개 필요할까?',

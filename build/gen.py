@@ -80,11 +80,10 @@ def step(s):
     h.append(f'<div class="quiz" data-quiz="{s["id"]}"></div>')
     return '\n'.join(h)
 
-def cover(c):
-    imgs = ''.join(f'<img src="" data-mood="{k}" alt="" aria-hidden="true"{" class=s" if k.startswith(("x1","x2","x3")) else ""}>' for k in c['cast'])
-    return (f'<div class="cover" id="cover"><div class="frame"><canvas id="cvCover" aria-hidden="true"></canvas>'
-            f'<span class="cap">{c["cap"]}</span><span class="badge">임시 표지 · 픽셀 표지 준비 중</span>'
-            f'<div class="cast4">{imgs}</div><span class="cover-chip">{c["chip"]}</span></div></div>')
+def cover(c, key, alt):
+    """픽셀 표지(img/cover_{key}.webp, 480×270 격자를 NEAREST 4배로 키운 무손실 WebP)를 얹는다. 캐릭터는 그림 안에 있다."""
+    return (f'<div class="cover" id="cover"><div class="frame"><img class="art" src="img/cover_{key}.webp" width="1920" height="1080" alt="{esc(alt)}" fetchpriority="high">'
+            f'<span class="cap">{c["cap"]}</span><span class="cover-chip">{c["chip"]}</span></div></div>')
 
 def page(P):
     nav = ''.join(f'<a href="{h}">{t}</a>' for h, t in P['nav'])
@@ -121,7 +120,7 @@ def page(P):
   <a class="logo" href="index.html">좌표 <i>첫걸음</i> {P["logo"]}</a>
   <div class="links">{nav}</div>
 </div></nav>
-{cover(P["cover"])}
+{cover(P["cover"], P["key"], P["cover"].get("alt", P["h1"]))}
 <header class="hero" id="top"><div class="wrap">
   <div class="eyebrow">{P["eyebrow"]}</div>
   <h1>{P["h1"]}</h1>
@@ -202,6 +201,7 @@ EXTRA_CSS = '''
 .cwrap.sq{aspect-ratio:1/1;max-width:560px;margin:0 auto;height:auto}
 .cwrap.sq canvas{width:100%;height:100%}
 @media(max-width:520px){.eqt td.m{white-space:normal;word-break:break-all}}
+.cover img.art{image-rendering:pixelated;image-rendering:crisp-edges}
 .diff{display:inline-block;border:1px solid var(--c-asst);color:var(--c-asst);border-radius:999px;padding:0 10px;font-size:12.5px;margin-left:6px}
 '''
 
