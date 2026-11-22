@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>나는 어디에 있는가? — 좌표계로 본 매핑 | 좌표 첫걸음 (최적화 첫걸음의 자매편)</title><meta name="description" content="좌표 첫걸음. 박사가 강의하고 조교 하루·초파리·주판봇이 돕고, 시아·모아·X1~X3가 듣는 강의실에서 수직선 → 좌표평면 → 극좌표 → 공간좌표 → 위도·경도와 지도 → 데이터의 좌표까지, 장마다 게임 부록과 마지막 실전 연습장으로 배우는 친절한 좌표 안내서.">
+<meta property="og:type" content="website"><meta property="og:title" content="나는 어디에 있는가? — 좌표계로 본 매핑 | 좌표 첫걸음 (최적화 첫걸음의 자매편)"><meta property="og:description" content="좌표 첫걸음. 박사가 강의하고 조교 하루·초파리·주판봇이 돕고, 시아·모아·X1~X3가 듣는 강의실에서 수직선 → 좌표평면 → 극좌표 → 공간좌표 → 위도·경도와 지도 → 데이터의 좌표까지, 장마다 게임 부록과 마지막 실전 연습장으로 배우는 친절한 좌표 안내서."><meta property="og:image" content="https://adminmrobo.github.io/hello_space_lab/img/og/index.png"><meta property="og:url" content="https://adminmrobo.github.io/hello_space_lab/"><meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<!--@@CSS@@-->
+<style>
+.tl,.tr{font-weight:700;font-size:13.5px;margin-bottom:4px}.tl{color:var(--amber)}.tr{color:var(--terrain)}
+.hex{display:inline-grid;place-items:center;min-width:44px;height:34px;padding:0 10px;margin-right:10px;border-radius:8px;background:var(--terrain);color:#fff;font-size:17px;vertical-align:4px}
+.sec{padding:40px 0;border-top:1px solid var(--rule)}
+.cast{display:grid;gap:10px}.castc{display:flex;gap:10px;align-items:center;background:var(--panel);border:1px solid var(--rule);border-left:4px solid var(--cc);border-radius:10px;padding:8px 10px}
+.castc img{width:60px;height:60px;flex:none}.castc p{margin:0;font-size:13.5px;color:var(--muted);line-height:1.55}
+.cover .cast4 img{width:11%;max-width:110px}.cover .cast4 img.s{width:7%}
+.num-in{width:7.5em;font:inherit;font-size:16px;padding:4px 8px;border:1px solid var(--rule);border-radius:8px}
+.panel.game{border:2px solid var(--terrain);border-radius:14px}
+.gameintro{background:#f4fbfb;border:1px dashed var(--terrain);border-radius:10px;padding:10px 14px;margin:10px 0;font-size:15px}
+.cwrap.sq{aspect-ratio:1/1;max-width:560px;margin:0 auto;height:auto}
+.cwrap.sq canvas{width:100%;height:100%}
+@media(max-width:520px){.eqt td.m{white-space:normal;word-break:break-all}}
+.diff{display:inline-block;border:1px solid var(--c-asst);color:var(--c-asst);border-radius:999px;padding:0 10px;font-size:12.5px;margin-left:6px}
+
+.cgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px;margin:16px 0}
+.ccard{display:flex;flex-direction:column;background:var(--panel);border:1px solid var(--rule);border-radius:14px;overflow:hidden;text-decoration:none;color:var(--text)}
+.ccard:hover{border-color:var(--terrain)}.ccard>div{padding:12px 16px}.ccard h3{margin:4px 0 6px;font-size:18px}.ccard p{margin:0 0 6px;font-size:14.5px;color:var(--muted)}
+.cmini{width:100%;height:150px;display:block;border-bottom:1px solid var(--rule)}.cno{font-weight:700;color:var(--terrain)}.cgame b{color:var(--c-asst)}
+.sister{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0}.sister>div{border:1px solid var(--rule);border-radius:12px;padding:14px 18px;background:var(--panel)}.sister b.q{display:block;font-size:20px;color:var(--terrain)}
+@media(max-width:760px){.sister{grid-template-columns:1fr}}
+</style></head>
+<body>
+<nav class="top" aria-label="섹션 바로가기"><div class="row"><a class="logo" href="index.html">좌표 <i>첫걸음</i></a><div class="links"><a href="#plan">강의 계획</a><a href="#class">강의실</a><a href="#sister">자매편</a><a href="#source">바탕 콘텐츠</a><a href="#kg">색인</a><a href="#export">꾸러미</a><a href="01_number_line.html">1장 →</a></div></div></nav>
+<div class="cover" id="cover"><div class="frame"><canvas id="cvCover" aria-hidden="true"></canvas><span class="cap">좌표 첫걸음 · 강의실 안내</span><span class="badge">임시 표지 · 픽셀 표지 준비 중</span>
+<div class="cast4"><img src="" data-mood="fly_point" alt="" aria-hidden="true"><img src="" data-mood="doc_board" alt="" aria-hidden="true"><img src="" data-mood="asst_smile" alt="" aria-hidden="true"><img src="" data-mood="robo_calc" alt="" aria-hidden="true"><img src="" data-mood="sia_explain" alt="" aria-hidden="true"><img src="" data-mood="moa_report" alt="" aria-hidden="true"><img src="" data-mood="x1_hint" alt="" aria-hidden="true" class=s><img src="" data-mood="x2_hint" alt="" aria-hidden="true" class=s><img src="" data-mood="x3_hint" alt="" aria-hidden="true" class=s></div><span class="cover-chip">나는 어디에 있는가? — 좌표계로 본 매핑</span></div></div>
+<header class="hero" id="top"><div class="wrap">
+<div class="eyebrow">좌표 첫걸음 · 최적화 첫걸음의 자매편 · 연구실 강의 시리즈</div>
+<h1>나는 어디에 있는가? — 좌표계로 본 매핑</h1>
+<p class="question">지도 앱의 파란 점부터 AI의 데이터 공간까지, "자리"는 어떻게 숫자가 될까?</p>
+<p class="lead">이 강의는 연구실이 그동안 만든 공간·벡터·지도·데이터 콘텐츠에서 <b>기본이 되는 좌표계만</b> 골라, 처음 오신 분이 차례로 따라올 수 있게 다시 쓴 안내서입니다. 수직선 하나에서 시작해 숫자가 둘, 셋으로 늘고, 거리·각도로 바꿔 부르고, 지구를 지도로 옮기고, 마지막에는 표 한 줄을 공간의 점으로 놓습니다. 장마다 직접 움직이는 실험과 <b>부록 게임</b>이 있고, 맨 끝 <b>실전 연습장</b>에서 네 현장을 운영하며 복습합니다.</p>
+<p class="byline">글 · 안상선 ((주)M-Robo 대표) · <a href="https://adminmrobo.github.io/who_am_i/who_am_i.html">저자 소개</a> · 2026-11-23 · v1.0</p>
+<div class="start"><b>처음이라면</b> 1장에서 시작해 순서대로 보세요. 한 장은 30~40분 강의 분량입니다. 코드와 수식을 몰라도 됩니다. 식이 나오면 수강생이 묻고 조교 하루가 숫자 하나로 풀어 줍니다.</div>
+<div class="kpis"><div class="kpi m"><b>6장 + 1</b><span>강의 여섯 장과 마지막 실전 연습장</span></div><div class="kpi g"><b>6개</b><span>장마다 하나씩 있는 부록 게임</span></div><div class="kpi a"><b>4곳</b><span>실전 연습장의 현장 (미션 12개)</span></div><div class="kpi r"><b>7편</b><span>다시 쓴 연구실 콘텐츠</span></div></div>
+</div></header>
+<main>
+<section class="sec" id="plan"><div class="wrap"><h2><span class="hex">계획</span>강의 계획표</h2>
+<div class="chain"><span>수직선 (숫자 1개)</span><i>→</i><span>좌표평면 (2개)</span><i>→</i><span>극좌표 (거리·각도)</span><i>→</i><span>공간좌표 (3개)</span><i>→</i><span>위도·경도와 지도</span><i>→</i><span>데이터의 좌표 (n개)</span><i>→</i><span>최적화 첫걸음</span></div>
+<p>앞 장의 한계가 다음 장의 이유가 되도록 이었습니다. 숫자 하나로 모자라 둘이 되고(1→2), 둥근 것을 다루려고 거리·각도로 바꾸고(2→3), 높이가 생겨 셋이 되고(3→4), 지구 표면에서는 다시 둘이 되고(4→5), 장소가 아닌 데이터에도 자리를 붙입니다(5→6).</p>
+<div class="cgrid"><a class="ccard" href="01_number_line.html"><canvas class="cmini" data-motif="line" aria-hidden="true"></canvas><div><span class="cno">1장</span> <span class="diff">산책</span><h3>수직선 — 숫자 하나로 말하는 자리</h3><p>기준점·방향·눈금. 길 위의 원점, 0층 없는 엘리베이터, 섭씨·화씨, 표준화 자.</p><p class="cgame"><b>부록</b> 자 통역사</p></div></a><a class="ccard" href="02_plane.html"><canvas class="cmini" data-motif="plane" aria-hidden="true"></canvas><div><span class="cno">2장</span> <span class="diff">산책</span><h3>좌표평면 — 두 숫자로 찍는 점</h3><p>좌석표로 배우는 순서쌍, 직선 거리 5와 골목 거리 7, 점은 자리 화살표는 이동.</p><p class="cgame"><b>부록</b> 거리만 알려 주는 보물찾기 (GPS)</p></div></a><a class="ccard" href="03_polar.html"><canvas class="cmini" data-motif="polar" aria-hidden="true"></canvas><div><span class="cno">3장</span> <span class="diff">오르막</span><h3>극좌표 — 거리와 방향으로 찍는 점</h3><p>(3, 4) = (5, 53.1°), 같은 각도 다른 피자 테두리, 12월과 1월을 이웃으로.</p><p class="cgame"><b>부록</b> 레이더 관제실</p></div></a><a class="ccard" href="04_space.html"><canvas class="cmini" data-motif="space" aria-hidden="true"></canvas><div><span class="cno">4장</span> <span class="diff">오르막</span><h3>공간좌표 — 높이가 생기면 세 숫자</h3><p>그림자 + 높이, 공간 거리 (2, 3, 6) → 7, 같은 점을 모눈·원통·지구본 자로.</p><p class="cgame"><b>부록</b> 드론 배송</p></div></a><a class="ccard" href="05_earth_map.html"><canvas class="cmini" data-motif="globe" aria-hidden="true"></canvas><div><span class="cno">5장</span> <span class="diff">오르막</span><h3>지구 위의 좌표 — 위도·경도와 지도 그리기</h3><p>반지름을 고정한 지구본 자, 경도 1도 111.2 km × cos(위도), 메르카토르의 대가.</p><p class="cgame"><b>부록</b> 지구 배송센터</p></div></a><a class="ccard" href="06_data_space.html"><canvas class="cmini" data-motif="data" aria-hidden="true"></canvas><div><span class="cno">6장</span> <span class="diff">오르막</span><h3>데이터의 좌표 — 표 한 줄이 점 하나가 될 때</h3><p>특성 공간, 표준화 후 거리, n차원, 좌표 위에 오차를 세워 최적화로.</p><p class="cgame"><b>부록</b> 쿠폰 담당자 (가장 가까운 이웃)</p></div></a><a class="ccard" href="practice/index.html"><canvas class="cmini" data-motif="plane" aria-hidden="true"></canvas><div><span class="cno">마지막 장</span> <span class="diff">오르막</span><h3>실전 연습장 — 네 현장 운영하기</h3><p>배송센터·관제탑·물류창고·추천 매장. 조작판·성적표·미션으로 1~6장 복습.</p><p class="cgame"><b>부록</b> 시뮬레이터 대시보드 4종</p></div></a></div></div></section>
+<section class="sec" id="class"><div class="wrap"><h2><span class="hex">강의실</span>강의실 사람들</h2>
+<p>박사가 강의하고, 조교 셋이 돕고, 수강생 다섯이 듣습니다. 시아·모아는 질문을, X1~X3는 뒷줄에서 반응을 맡아요. 조교 주판봇은 1초 만에 답을 내지만 가끔 너무 빨라서, 장마다 한 번 <b>AI 판단 코너</b>에서 "이 답 믿어도 될까?"를 함께 따져 봅니다.</p>
+<div class="cast" style="grid-template-columns:repeat(auto-fit,minmax(230px,1fr))"><div class="castc" style="--cc:var(--c-doc)"><img data-mood="doc_board" alt="" aria-hidden="true"><div><b>박사</b><p>강의를 맡은 연구실 선생님. 장마다 상황 질문으로 문을 열고 해석 문장으로 닫아요.</p></div></div><div class="castc" style="--cc:var(--c-asst)"><img data-mood="asst_smile" alt="" aria-hidden="true"><div><b>조교 하루</b><p>수식 담당 조교. 시아·모아의 질문을 받아 학교 수학과 숫자 하나로 풀어 줘요.</p></div></div><div class="castc" style="--cc:var(--c-fly)"><img data-mood="fly_point" alt="" aria-hidden="true"><div><b>조교 초파리</b><p>실험 담당 조교. "이걸 눌러 봐"로 실험판을 열고, 답이 그럴듯한지 의심해요.</p></div></div><div class="castc" style="--cc:var(--c-robo)"><img data-mood="robo_calc" alt="" aria-hidden="true"><div><b>조교 주판봇</b><p>계산 담당 조교. 1초 만에 답을 내지만 가끔 너무 빨라요. AI 판단 코너의 주인공.</p></div></div><div class="castc" style="--cc:var(--c-sia)"><img data-mood="sia_smile" alt="" aria-hidden="true"><div><b>수강생 시아</b><p>직관파. 비유부터 꺼내 "그러니까 이런 거죠?"라고 묻는 앞줄 수강생.</p></div></div><div class="castc" style="--cc:var(--c-moa)"><img data-mood="moa_smile" alt="" aria-hidden="true"><div><b>수강생 모아</b><p>꼼꼼파. "그건 언제나 그래요?" 하고 조건과 예외를 묻는 수강생. 차를 준비해 와요.</p></div></div><div class="castc" style="--cc:var(--c-x)"><img data-mood="x1_hint" alt="" aria-hidden="true"><div><b>X1</b><p>뒷줄 수강생. 손을 들 때가 가끔 있어요.</p></div></div><div class="castc" style="--cc:var(--c-x)"><img data-mood="x2_hint" alt="" aria-hidden="true"><div><b>X2</b><p>뒷줄 수강생. 필기를 가장 열심히 해요.</p></div></div><div class="castc" style="--cc:var(--c-x)"><img data-mood="x3_hint" alt="" aria-hidden="true"><div><b>X3</b><p>뒷줄 수강생. 게임 시간에 가장 신나요.</p></div></div></div></div></section>
+<section class="sec" id="sister"><div class="wrap"><h2><span class="hex">자매편</span>최적화 첫걸음과 함께 보기</h2>
+<div class="sister"><div><b class="q">나는 어디에 있는가?</b><p>좌표 첫걸음 (이 시리즈) — 자리를 숫자로 적고, 거리를 재고, 자를 바꿔 부르는 법.</p></div><div><b class="q">어디로 가야 하나?</b><p><a href="https://adminmrobo.github.io/optimization_3d_map/first_step_0.html">최적화 첫걸음</a> — 좌표 위에 오차를 세우고 내리막으로 걷는 법. 미분부터 경사하강까지.</p></div></div>
+<p>6장의 마지막 단계(6.4)에서 두 시리즈가 만납니다. 좌표 첫걸음을 먼저 보면 최적화 첫걸음의 "가중치를 좌표축으로, 오차를 높이로"가 자연스럽게 읽힙니다.</p></div></section>
+<section class="sec" id="source"><div class="wrap"><h2><span class="hex">바탕</span>이 강의가 다시 쓴 연구실 콘텐츠</h2>
+<p>좌표 첫걸음은 이미 만든 연구실 콘텐츠를 입문자용으로 다시 엮은 것입니다. 각 장 끝 출처 표에 어느 단계가 어느 콘텐츠에서 왔는지 적었습니다. 더 깊이 보고 싶으면 원래 콘텐츠로 가세요.</p>
+<div class="tblwrap"><table class="cmp"><thead><tr><th>연구실 콘텐츠</th><th>좌표 첫걸음에서 쓴 곳</th></tr></thead><tbody><tr><td><a href="https://adminmrobo.github.io/euclidean_space_lab/">자와 각도기의 방 — 유클리드 공간</a></td><td>모눈·자·각도기·화살표 (1·2·4장)</td></tr><tr><td><a href="https://adminmrobo.github.io/vector_analysis_lab/">벡터 분석 랩 — 네 개의 자</a></td><td>네 가지 자, 피자, 12월과 1월, 경도 1도, 그린란드 (3·4·5장)</td></tr><tr><td><a href="https://adminmrobo.github.io/optimization_3d_map/">좌표축 위의 그릇 · 최적화 첫걸음</a></td><td>3D 지형, 오차를 높이로 (4·6장, 자매편)</td></tr><tr><td><a href="https://adminmrobo.github.io/machine_learning_model_atlas/">머신러닝 모델 도감</a></td><td>같은 모눈 위의 데이터 (6장)</td></tr><tr><td><a href="https://adminmrobo.github.io/vector_db_lab/">벡터 DB 연구실</a></td><td>임베딩, 고차원 점 사이 거리 (6장)</td></tr><tr><td><a href="https://adminmrobo.github.io/what_is_tensor/">텐서 연구실</a></td><td>숫자 묶음과 축 (6장)</td></tr><tr><td><a href="https://adminmrobo.github.io/statistics_note/">우연의 과학통계학</a></td><td>표준화 점수 (1·6장)</td></tr></tbody></table></div>
+<p class="muted" style="font-size:14px">더 넓은 공간(끝없는 방의 힐베르트 공간, 시간이 들어간 민코프스키 시공간)은 기본 좌표계를 넘어서므로 이 강의에서는 다루지 않았습니다 → <a href="https://adminmrobo.github.io/hilbert_space_lab/">힐베르트 공간</a>, <a href="https://adminmrobo.github.io/minkowski_space_lab/">민코프스키 시공간</a></p>
+</div></section>
+</main>
+<footer><div class="wrap"><p>캐릭터 이름·설정·그림은 저작권자 안상선의 허락 없이 사용할 수 없습니다.</p><p>글 · 안상선 ((주)M-Robo 대표) · <a href="https://adminmrobo.github.io/who_am_i/who_am_i.html">저자 소개</a></p></div></footer>
+<script>
+/*@@SPRITES@@*/
+/*@@COMMON@@*/
+/*@@SPACE@@*/
+(function(){'use strict';U.fillImgs();SP.drawCover(U.$('#cvCover'),'plane');U.$$('canvas.cmini').forEach(function(c){SP.drawCover(c,c.dataset.motif);});U.start();})();
+</script></body></html>

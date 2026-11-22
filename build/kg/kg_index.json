@@ -1,0 +1,294 @@
+{
+ "version": "1.3",
+ "page": "index",
+ "nodes": [
+  {
+   "id": "lab:concept/coordinate-system",
+   "type": "Concept",
+   "label": {
+    "ko": "좌표계",
+    "en": "Coordinate system"
+   },
+   "page": "index",
+   "anchor": "#plan",
+   "level": 1,
+   "status": "known",
+   "confidence": "high",
+   "coverage": "explained",
+   "family": "coordinates",
+   "domain": [
+    "math",
+    "ai"
+   ],
+   "match": [],
+   "definition": {
+    "ko": "자리를 숫자로 적는 약속: 기준점·방향·눈금."
+   }
+  },
+  {
+   "id": "lab:concept/mapping",
+   "type": "Concept",
+   "label": {
+    "ko": "매핑",
+    "en": "Mapping"
+   },
+   "page": "index",
+   "anchor": "#plan",
+   "level": 1,
+   "status": "known",
+   "confidence": "high",
+   "coverage": "explained",
+   "family": "coordinates",
+   "domain": [
+    "math",
+    "ai"
+   ],
+   "match": [],
+   "definition": {
+    "ko": "한 공간의 자리를 다른 공간(지도·데이터 공간)의 자리로 옮기는 일."
+   }
+  },
+  {
+   "id": "lab:concept/series-number-line",
+   "type": "Concept",
+   "label": {
+    "ko": "수직선",
+    "en": "Number line"
+   },
+   "page": "index",
+   "anchor": "#plan",
+   "level": 1,
+   "status": "known",
+   "confidence": "high",
+   "coverage": "explained",
+   "family": "coordinates",
+   "domain": [
+    "math",
+    "ai"
+   ],
+   "match": [],
+   "definition": {
+    "ko": "1장."
+   }
+  },
+  {
+   "id": "lab:concept/series-plane",
+   "type": "Concept",
+   "label": {
+    "ko": "좌표평면",
+    "en": "Coordinate plane"
+   },
+   "page": "index",
+   "anchor": "#plan",
+   "level": 1,
+   "status": "known",
+   "confidence": "high",
+   "coverage": "explained",
+   "family": "coordinates",
+   "domain": [
+    "math",
+    "ai"
+   ],
+   "match": [],
+   "definition": {
+    "ko": "2장."
+   }
+  },
+  {
+   "id": "lab:concept/series-polar",
+   "type": "Concept",
+   "label": {
+    "ko": "극좌표",
+    "en": "Polar coordinates"
+   },
+   "page": "index",
+   "anchor": "#plan",
+   "level": 1,
+   "status": "known",
+   "confidence": "high",
+   "coverage": "explained",
+   "family": "coordinates",
+   "domain": [
+    "math",
+    "ai"
+   ],
+   "match": [],
+   "definition": {
+    "ko": "3장."
+   }
+  },
+  {
+   "id": "lab:concept/series-space",
+   "type": "Concept",
+   "label": {
+    "ko": "공간좌표",
+    "en": "3D coordinates"
+   },
+   "page": "index",
+   "anchor": "#plan",
+   "level": 1,
+   "status": "known",
+   "confidence": "high",
+   "coverage": "explained",
+   "family": "coordinates",
+   "domain": [
+    "math",
+    "ai"
+   ],
+   "match": [],
+   "definition": {
+    "ko": "4장."
+   }
+  },
+  {
+   "id": "lab:concept/series-geo",
+   "type": "Concept",
+   "label": {
+    "ko": "위도·경도와 지도",
+    "en": "Geographic coordinates and maps"
+   },
+   "page": "index",
+   "anchor": "#plan",
+   "level": 1,
+   "status": "known",
+   "confidence": "high",
+   "coverage": "explained",
+   "family": "coordinates",
+   "domain": [
+    "math",
+    "ai"
+   ],
+   "match": [],
+   "definition": {
+    "ko": "5장."
+   }
+  },
+  {
+   "id": "lab:concept/series-feature",
+   "type": "Concept",
+   "label": {
+    "ko": "특성 공간",
+    "en": "Feature space"
+   },
+   "page": "index",
+   "anchor": "#plan",
+   "level": 1,
+   "status": "known",
+   "confidence": "high",
+   "coverage": "explained",
+   "family": "coordinates",
+   "domain": [
+    "math",
+    "ai"
+   ],
+   "match": [],
+   "definition": {
+    "ko": "6장."
+   }
+  },
+  {
+   "id": "lab:question/where-am-i",
+   "type": "Question",
+   "label": {
+    "ko": "나는 어디에 있는가?",
+    "en": "Where am I?"
+   },
+   "page": "index",
+   "anchor": "#top",
+   "level": 1,
+   "status": "known",
+   "confidence": "high",
+   "coverage": "explained",
+   "family": "coordinates",
+   "domain": [
+    "math",
+    "ai"
+   ],
+   "match": [],
+   "definition": {
+    "ko": "이 시리즈의 질문."
+   }
+  },
+  {
+   "id": "lab:question/where-to-go",
+   "type": "Question",
+   "label": {
+    "ko": "어디로 가야 하나?",
+    "en": "Where to go?"
+   },
+   "page": "index",
+   "anchor": "#sister",
+   "level": 1,
+   "status": "known",
+   "confidence": "high",
+   "coverage": "explained",
+   "family": "coordinates",
+   "domain": [
+    "math",
+    "ai"
+   ],
+   "match": [],
+   "definition": {
+    "ko": "자매편 최적화 첫걸음의 질문."
+   }
+  }
+ ],
+ "edges": [
+  {
+   "s": "lab:concept/series-number-line",
+   "p": "lab:prerequisiteOf",
+   "o": "lab:concept/series-plane",
+   "anchor": "#plan",
+   "confidence": "high"
+  },
+  {
+   "s": "lab:concept/series-plane",
+   "p": "lab:prerequisiteOf",
+   "o": "lab:concept/series-polar",
+   "anchor": "#plan",
+   "confidence": "high"
+  },
+  {
+   "s": "lab:concept/series-polar",
+   "p": "lab:prerequisiteOf",
+   "o": "lab:concept/series-space",
+   "anchor": "#plan",
+   "confidence": "high"
+  },
+  {
+   "s": "lab:concept/series-space",
+   "p": "lab:prerequisiteOf",
+   "o": "lab:concept/series-geo",
+   "anchor": "#plan",
+   "confidence": "high"
+  },
+  {
+   "s": "lab:concept/series-geo",
+   "p": "lab:prerequisiteOf",
+   "o": "lab:concept/series-feature",
+   "anchor": "#plan",
+   "confidence": "high"
+  },
+  {
+   "s": "lab:concept/coordinate-system",
+   "p": "lab:relatedTo",
+   "o": "lab:question/where-am-i",
+   "anchor": "#top",
+   "confidence": "high"
+  },
+  {
+   "s": "lab:concept/mapping",
+   "p": "lab:relatedTo",
+   "o": "lab:concept/series-geo",
+   "anchor": "#plan",
+   "confidence": "high"
+  },
+  {
+   "s": "lab:concept/series-feature",
+   "p": "lab:prerequisiteOf",
+   "o": "lab:question/where-to-go",
+   "anchor": "#sister",
+   "confidence": "high"
+  }
+ ]
+}

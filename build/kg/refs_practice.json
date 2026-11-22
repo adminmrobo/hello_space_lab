@@ -1,0 +1,101 @@
+[
+ {
+  "id": "ahn_euclid",
+  "type": "webpage",
+  "title": "자와 각도기의 방 — 시아·모아의 유클리드 공간",
+  "author": [
+   {
+    "family": "안",
+    "given": "상선"
+   }
+  ],
+  "issued": {
+   "date-parts": [
+    [
+     2026
+    ]
+   ]
+  },
+  "URL": "https://adminmrobo.github.io/euclidean_space_lab/",
+  "lab": {
+   "work": "lab:work/ahn_euclid",
+   "role": "background",
+   "supports": [],
+   "locs": [],
+   "verified": {
+    "title": true,
+    "author": true,
+    "year": true,
+    "url": true
+   },
+   "checkedBy": "연구실 저장소에서 직접 확인 (2026-11-23)",
+   "note": "이 페이지가 다시 쓴 연구실 콘텐츠"
+  }
+ },
+ {
+  "id": "ahn_vector",
+  "type": "webpage",
+  "title": "벡터 분석 랩 — 네 개의 자로 읽는 화살표",
+  "author": [
+   {
+    "family": "안",
+    "given": "상선"
+   }
+  ],
+  "issued": {
+   "date-parts": [
+    [
+     2026
+    ]
+   ]
+  },
+  "URL": "https://adminmrobo.github.io/vector_analysis_lab/",
+  "lab": {
+   "work": "lab:work/ahn_vector",
+   "role": "background",
+   "supports": [],
+   "locs": [],
+   "verified": {
+    "title": true,
+    "author": true,
+    "year": true,
+    "url": true
+   },
+   "checkedBy": "연구실 저장소에서 직접 확인 (2026-11-23)",
+   "note": "이 페이지가 다시 쓴 연구실 콘텐츠"
+  }
+ },
+ {
+  "id": "ahn_vdb",
+  "type": "webpage",
+  "title": "벡터 DB 연구실",
+  "author": [
+   {
+    "family": "안",
+    "given": "상선"
+   }
+  ],
+  "issued": {
+   "date-parts": [
+    [
+     2026
+    ]
+   ]
+  },
+  "URL": "https://adminmrobo.github.io/vector_db_lab/",
+  "lab": {
+   "work": "lab:work/ahn_vdb",
+   "role": "background",
+   "supports": [],
+   "locs": [],
+   "verified": {
+    "title": true,
+    "author": true,
+    "year": true,
+    "url": true
+   },
+   "checkedBy": "연구실 저장소에서 직접 확인 (2026-11-23)",
+   "note": "이 페이지가 다시 쓴 연구실 콘텐츠"
+  }
+ }
+]

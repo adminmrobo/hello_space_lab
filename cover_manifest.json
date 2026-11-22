@@ -1,0 +1,71 @@
+{
+ "repo": "adminmrobo/hello_space_lab",
+ "series": "좌표 첫걸음 — 나는 어디에 있는가? 좌표계로 본 매핑",
+ "style": "16-bit RPG pixel art, daytime white lecture room",
+ "status": "임시 표지(캔버스). 픽셀 표지 지시문은 docs/IMAGE_PROMPTS.md",
+ "languages": [
+  "ko"
+ ],
+ "ontology": true,
+ "characters": [
+  "doc",
+  "asst",
+  "fly",
+  "robo",
+  "sia",
+  "moa",
+  "x1",
+  "x2",
+  "x3"
+ ],
+ "covers": [
+  {
+   "page": "index.html",
+   "file": "img/cover_index.webp",
+   "state": "prompt_ready",
+   "og": "img/og/index.png"
+  },
+  {
+   "page": "01_number_line.html",
+   "file": "img/cover_ch1.webp",
+   "state": "prompt_ready",
+   "og": "img/og/ch1.png"
+  },
+  {
+   "page": "02_plane.html",
+   "file": "img/cover_ch2.webp",
+   "state": "prompt_ready",
+   "og": "img/og/ch2.png"
+  },
+  {
+   "page": "03_polar.html",
+   "file": "img/cover_ch3.webp",
+   "state": "prompt_ready",
+   "og": "img/og/ch3.png"
+  },
+  {
+   "page": "04_space.html",
+   "file": "img/cover_ch4.webp",
+   "state": "prompt_ready",
+   "og": "img/og/ch4.png"
+  },
+  {
+   "page": "05_earth_map.html",
+   "file": "img/cover_ch5.webp",
+   "state": "prompt_ready",
+   "og": "img/og/ch5.png"
+  },
+  {
+   "page": "06_data_space.html",
+   "file": "img/cover_ch6.webp",
+   "state": "prompt_ready",
+   "og": "img/og/ch6.png"
+  },
+  {
+   "page": "practice/index.html",
+   "file": "img/cover_practice.webp",
+   "state": "prompt_ready",
+   "og": "img/og/practice.png"
+  }
+ ]
+}

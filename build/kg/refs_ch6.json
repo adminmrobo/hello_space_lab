@@ -1,0 +1,167 @@
+[
+ {
+  "id": "ahn_atlas",
+  "type": "webpage",
+  "title": "머신러닝 모델 도감",
+  "author": [
+   {
+    "family": "안",
+    "given": "상선"
+   }
+  ],
+  "issued": {
+   "date-parts": [
+    [
+     2026
+    ]
+   ]
+  },
+  "URL": "https://adminmrobo.github.io/machine_learning_model_atlas/",
+  "lab": {
+   "work": "lab:work/ahn_atlas",
+   "role": "background",
+   "supports": [],
+   "locs": [],
+   "verified": {
+    "title": true,
+    "author": true,
+    "year": true,
+    "url": true
+   },
+   "checkedBy": "연구실 저장소에서 직접 확인 (2026-11-23)",
+   "note": "이 페이지가 다시 쓴 연구실 콘텐츠"
+  }
+ },
+ {
+  "id": "ahn_vdb",
+  "type": "webpage",
+  "title": "벡터 DB 연구실",
+  "author": [
+   {
+    "family": "안",
+    "given": "상선"
+   }
+  ],
+  "issued": {
+   "date-parts": [
+    [
+     2026
+    ]
+   ]
+  },
+  "URL": "https://adminmrobo.github.io/vector_db_lab/",
+  "lab": {
+   "work": "lab:work/ahn_vdb",
+   "role": "background",
+   "supports": [],
+   "locs": [],
+   "verified": {
+    "title": true,
+    "author": true,
+    "year": true,
+    "url": true
+   },
+   "checkedBy": "연구실 저장소에서 직접 확인 (2026-11-23)",
+   "note": "이 페이지가 다시 쓴 연구실 콘텐츠"
+  }
+ },
+ {
+  "id": "ahn_tensor",
+  "type": "webpage",
+  "title": "텐서 연구실",
+  "author": [
+   {
+    "family": "안",
+    "given": "상선"
+   }
+  ],
+  "issued": {
+   "date-parts": [
+    [
+     2026
+    ]
+   ]
+  },
+  "URL": "https://adminmrobo.github.io/what_is_tensor/",
+  "lab": {
+   "work": "lab:work/ahn_tensor",
+   "role": "background",
+   "supports": [],
+   "locs": [],
+   "verified": {
+    "title": true,
+    "author": true,
+    "year": true,
+    "url": true
+   },
+   "checkedBy": "연구실 저장소에서 직접 확인 (2026-11-23)",
+   "note": "이 페이지가 다시 쓴 연구실 콘텐츠"
+  }
+ },
+ {
+  "id": "ahn_optim",
+  "type": "webpage",
+  "title": "좌표축 위의 그릇·최적화 첫걸음",
+  "author": [
+   {
+    "family": "안",
+    "given": "상선"
+   }
+  ],
+  "issued": {
+   "date-parts": [
+    [
+     2026
+    ]
+   ]
+  },
+  "URL": "https://adminmrobo.github.io/optimization_3d_map/",
+  "lab": {
+   "work": "lab:work/ahn_optim",
+   "role": "background",
+   "supports": [],
+   "locs": [],
+   "verified": {
+    "title": true,
+    "author": true,
+    "year": true,
+    "url": true
+   },
+   "checkedBy": "연구실 저장소에서 직접 확인 (2026-11-23)",
+   "note": "이 페이지가 다시 쓴 연구실 콘텐츠"
+  }
+ },
+ {
+  "id": "ahn_euclid",
+  "type": "webpage",
+  "title": "자와 각도기의 방 — 시아·모아의 유클리드 공간",
+  "author": [
+   {
+    "family": "안",
+    "given": "상선"
+   }
+  ],
+  "issued": {
+   "date-parts": [
+    [
+     2026
+    ]
+   ]
+  },
+  "URL": "https://adminmrobo.github.io/euclidean_space_lab/",
+  "lab": {
+   "work": "lab:work/ahn_euclid",
+   "role": "background",
+   "supports": [],
+   "locs": [],
+   "verified": {
+    "title": true,
+    "author": true,
+    "year": true,
+    "url": true
+   },
+   "checkedBy": "연구실 저장소에서 직접 확인 (2026-11-23)",
+   "note": "이 페이지가 다시 쓴 연구실 콘텐츠"
+  }
+ }
+]

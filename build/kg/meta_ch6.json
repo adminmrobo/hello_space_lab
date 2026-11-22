@@ -1,0 +1,42 @@
+{
+ "title": "좌표 첫걸음 6장 데이터의 좌표 — 표 한 줄이 점 하나가 될 때 | 나는 어디에 있는가?",
+ "series": "좌표 첫걸음 — 나는 어디에 있는가?",
+ "number": "ch6",
+ "creator": [
+  {
+   "name": "안상선",
+   "role": "author",
+   "affiliation": "(주)M-Robo"
+  }
+ ],
+ "contributor": [
+  {
+   "name": "AI 보조 제작",
+   "role": "assistant"
+  }
+ ],
+ "date": "2026-11-23",
+ "version": "1.0",
+ "language": [
+  "ko"
+ ],
+ "license": "",
+ "url": "https://adminmrobo.github.io/hello_space_lab/06_data_space.html",
+ "about": [
+  "lab:concept/feature-space",
+  "lab:concept/standardization-distance",
+  "lab:concept/knn",
+  "lab:concept/n-dim-distance"
+ ],
+ "basedOn": [
+  "ahn_atlas",
+  "ahn_vdb",
+  "ahn_tensor",
+  "ahn_optim",
+  "ahn_euclid"
+ ],
+ "educationalLevel": "입문",
+ "learningResourceType": "interactive explainer",
+ "registry": "KG_00_registry 0.2",
+ "suggestedCitation": "안상선 (2026). 좌표 첫걸음 6장 데이터의 좌표 — 표 한 줄이 점 하나가 될 때 | 나는 어디에 있는가?. 좌표 첫걸음, v1.0."
+}

@@ -1,0 +1,264 @@
+{
+ "version": "1.3",
+ "page": "04_space",
+ "nodes": [
+  {
+   "id": "lab:concept/space-coordinates",
+   "type": "Concept",
+   "label": {
+    "ko": "공간좌표",
+    "en": "3D Cartesian coordinates"
+   },
+   "page": "04_space",
+   "anchor": "#s41",
+   "level": 1,
+   "status": "known",
+   "confidence": "high",
+   "coverage": "explained",
+   "family": "coordinates",
+   "domain": [
+    "math",
+    "ai"
+   ],
+   "match": [],
+   "definition": {
+    "ko": "직각인 자 세 개로 적은 자리 (x, y, z)."
+   }
+  },
+  {
+   "id": "lab:concept/projection",
+   "type": "Concept",
+   "label": {
+    "ko": "정사영(바닥 그림자)",
+    "en": "Orthogonal projection"
+   },
+   "page": "04_space",
+   "anchor": "#s41",
+   "level": 1,
+   "status": "known",
+   "confidence": "high",
+   "coverage": "explained",
+   "family": "coordinates",
+   "domain": [
+    "math",
+    "ai"
+   ],
+   "match": [],
+   "definition": {
+    "ko": "높이를 0으로 눌러 바닥에 비친 자리."
+   }
+  },
+  {
+   "id": "lab:concept/distance-3d",
+   "type": "Concept",
+   "label": {
+    "ko": "공간 거리",
+    "en": "3D distance"
+   },
+   "page": "04_space",
+   "anchor": "#s42",
+   "level": 1,
+   "status": "known",
+   "confidence": "high",
+   "coverage": "explained",
+   "family": "coordinates",
+   "domain": [
+    "math",
+    "ai"
+   ],
+   "match": [],
+   "definition": {
+    "ko": "√(Δx² + Δy² + Δz²)."
+   }
+  },
+  {
+   "id": "lab:concept/cylindrical",
+   "type": "Concept",
+   "label": {
+    "ko": "원통좌표",
+    "en": "Cylindrical coordinates"
+   },
+   "page": "04_space",
+   "anchor": "#s43",
+   "level": 1,
+   "status": "known",
+   "confidence": "high",
+   "coverage": "explained",
+   "family": "coordinates",
+   "domain": [
+    "math",
+    "ai"
+   ],
+   "match": [],
+   "definition": {
+    "ko": "극좌표 + 높이 (ρ, φ, z)."
+   }
+  },
+  {
+   "id": "lab:concept/spherical",
+   "type": "Concept",
+   "label": {
+    "ko": "구면좌표(지구본 자)",
+    "en": "Spherical coordinates"
+   },
+   "page": "04_space",
+   "anchor": "#s43",
+   "level": 1,
+   "status": "known",
+   "confidence": "high",
+   "coverage": "explained",
+   "family": "coordinates",
+   "domain": [
+    "math",
+    "ai"
+   ],
+   "match": [],
+   "definition": {
+    "ko": "(r, θ, φ). 위도·경도의 뿌리."
+   }
+  },
+  {
+   "id": "lab:concept/coordinate-transform",
+   "type": "Concept",
+   "label": {
+    "ko": "좌표 변환",
+    "en": "Coordinate transformation"
+   },
+   "page": "04_space",
+   "anchor": "#s43",
+   "level": 1,
+   "status": "known",
+   "confidence": "high",
+   "coverage": "explained",
+   "family": "coordinates",
+   "domain": [
+    "math",
+    "ai"
+   ],
+   "match": [],
+   "definition": {
+    "ko": "같은 자리를 다른 자의 주소로 바꾸기."
+   }
+  },
+  {
+   "id": "lab:sim/drone-delivery",
+   "type": "Simulation",
+   "label": {
+    "ko": "드론 배송 게임",
+    "en": "Drone delivery game"
+   },
+   "page": "04_space",
+   "anchor": "#app",
+   "level": 1,
+   "status": "known",
+   "confidence": "high",
+   "coverage": "explained",
+   "family": "coordinates",
+   "domain": [
+    "math",
+    "ai"
+   ],
+   "match": [],
+   "definition": {
+    "ko": "다른 자로 적힌 선반 주소를 모눈 자로 바꾸는 네 판."
+   }
+  },
+  {
+   "id": "lab:limitation/pole",
+   "type": "Limitation",
+   "label": {
+    "ko": "축 위·꼭대기에서 각도가 정해지지 않음",
+    "en": "Coordinate singularity"
+   },
+   "page": "04_space",
+   "anchor": "#s43",
+   "level": 1,
+   "status": "known",
+   "confidence": "high",
+   "coverage": "explained",
+   "family": "coordinates",
+   "domain": [
+    "math",
+    "ai"
+   ],
+   "match": [],
+   "definition": {
+    "ko": "ρ = 0 또는 θ = 0에서 φ가 없다."
+   }
+  },
+  {
+   "id": "lab:question/lat-lon",
+   "type": "Question",
+   "label": {
+    "ko": "지구본 자의 r을 고정하면?",
+    "en": "Fix r on the globe?"
+   },
+   "page": "04_space",
+   "anchor": "#outro",
+   "level": 1,
+   "status": "known",
+   "confidence": "high",
+   "coverage": "explained",
+   "family": "coordinates",
+   "domain": [
+    "math",
+    "ai"
+   ],
+   "match": [],
+   "definition": {
+    "ko": "5장 위도·경도로 이어지는 질문."
+   }
+  }
+ ],
+ "edges": [
+  {
+   "s": "lab:concept/projection",
+   "p": "lab:partOf",
+   "o": "lab:concept/space-coordinates",
+   "anchor": "#s41",
+   "confidence": "high"
+  },
+  {
+   "s": "lab:concept/space-coordinates",
+   "p": "lab:prerequisiteOf",
+   "o": "lab:concept/distance-3d",
+   "anchor": "#s42",
+   "confidence": "high"
+  },
+  {
+   "s": "lab:concept/cylindrical",
+   "p": "lab:relatedTo",
+   "o": "lab:concept/spherical",
+   "anchor": "#s43",
+   "confidence": "high"
+  },
+  {
+   "s": "lab:concept/coordinate-transform",
+   "p": "lab:relatedTo",
+   "o": "lab:concept/cylindrical",
+   "anchor": "#s43",
+   "confidence": "high"
+  },
+  {
+   "s": "lab:concept/coordinate-transform",
+   "p": "lab:demonstratedBy",
+   "o": "lab:sim/drone-delivery",
+   "anchor": "#app",
+   "confidence": "high"
+  },
+  {
+   "s": "lab:concept/spherical",
+   "p": "lab:hasLimitation",
+   "o": "lab:limitation/pole",
+   "anchor": "#s43",
+   "confidence": "high"
+  },
+  {
+   "s": "lab:concept/spherical",
+   "p": "lab:prerequisiteOf",
+   "o": "lab:question/lat-lon",
+   "anchor": "#outro",
+   "confidence": "high"
+  }
+ ]
+}

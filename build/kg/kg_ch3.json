@@ -1,0 +1,301 @@
+{
+ "version": "1.3",
+ "page": "03_polar",
+ "nodes": [
+  {
+   "id": "lab:concept/polar-coordinates",
+   "type": "Concept",
+   "label": {
+    "ko": "극좌표",
+    "en": "Polar coordinates"
+   },
+   "page": "03_polar",
+   "anchor": "#s31",
+   "level": 1,
+   "status": "known",
+   "confidence": "high",
+   "coverage": "explained",
+   "family": "coordinates",
+   "domain": [
+    "math",
+    "ai"
+   ],
+   "match": [],
+   "definition": {
+    "ko": "거리 r과 각도 θ로 평면의 자리를 적는 자."
+   }
+  },
+  {
+   "id": "lab:concept/trig-conversion",
+   "type": "Concept",
+   "label": {
+    "ko": "cos·sin 변환",
+    "en": "Polar–Cartesian conversion"
+   },
+   "page": "03_polar",
+   "anchor": "#s31",
+   "level": 1,
+   "status": "known",
+   "confidence": "high",
+   "coverage": "explained",
+   "family": "coordinates",
+   "domain": [
+    "math",
+    "ai"
+   ],
+   "match": [],
+   "definition": {
+    "ko": "x = r cos θ, y = r sin θ."
+   }
+  },
+  {
+   "id": "lab:concept/radian",
+   "type": "Concept",
+   "label": {
+    "ko": "라디안",
+    "en": "Radian"
+   },
+   "page": "03_polar",
+   "anchor": "#s32",
+   "level": 1,
+   "status": "known",
+   "confidence": "high",
+   "coverage": "explained",
+   "family": "coordinates",
+   "domain": [
+    "math",
+    "ai"
+   ],
+   "match": [],
+   "definition": {
+    "ko": "호의 길이로 잰 각도."
+   }
+  },
+  {
+   "id": "lab:concept/arc-length",
+   "type": "Concept",
+   "label": {
+    "ko": "호의 길이",
+    "en": "Arc length"
+   },
+   "page": "03_polar",
+   "anchor": "#s32",
+   "level": 1,
+   "status": "known",
+   "confidence": "high",
+   "coverage": "explained",
+   "family": "coordinates",
+   "domain": [
+    "math",
+    "ai"
+   ],
+   "match": [],
+   "definition": {
+    "ko": "반지름 × 각도(라디안). 각도 눈금 한 걸음의 실제 길이."
+   }
+  },
+  {
+   "id": "lab:concept/cyclical-feature",
+   "type": "Concept",
+   "label": {
+    "ko": "순환 특성",
+    "en": "Cyclical feature encoding"
+   },
+   "page": "03_polar",
+   "anchor": "#s33",
+   "level": 1,
+   "status": "known",
+   "confidence": "high",
+   "coverage": "explained",
+   "family": "coordinates",
+   "domain": [
+    "math",
+    "ai"
+   ],
+   "match": [],
+   "definition": {
+    "ko": "달·요일·시각을 sin·cos 두 열로 바꾼 입력."
+   }
+  },
+  {
+   "id": "lab:analogy/pizza",
+   "type": "Analogy",
+   "label": {
+    "ko": "피자 테두리",
+    "en": "Pizza crust"
+   },
+   "page": "03_polar",
+   "anchor": "#s32",
+   "level": 1,
+   "status": "known",
+   "confidence": "high",
+   "coverage": "explained",
+   "family": "coordinates",
+   "domain": [
+    "math",
+    "ai"
+   ],
+   "match": [],
+   "definition": {
+    "ko": "같은 각도라도 반지름이 크면 호가 길다."
+   }
+  },
+  {
+   "id": "lab:analogy/month-clock",
+   "type": "Analogy",
+   "label": {
+    "ko": "달력 시계판",
+    "en": "Month clock"
+   },
+   "page": "03_polar",
+   "anchor": "#s33",
+   "level": 1,
+   "status": "known",
+   "confidence": "high",
+   "coverage": "explained",
+   "family": "coordinates",
+   "domain": [
+    "math",
+    "ai"
+   ],
+   "match": [],
+   "definition": {
+    "ko": "12월과 1월이 이웃이 되는 원 위의 달."
+   }
+  },
+  {
+   "id": "lab:sim/radar-game",
+   "type": "Simulation",
+   "label": {
+    "ko": "레이더 관제실 게임",
+    "en": "Radar control game"
+   },
+   "page": "03_polar",
+   "anchor": "#app",
+   "level": 1,
+   "status": "known",
+   "confidence": "high",
+   "coverage": "explained",
+   "family": "coordinates",
+   "domain": [
+    "math",
+    "ai"
+   ],
+   "match": [],
+   "definition": {
+    "ko": "(x, y) 표적을 (r, θ)로 맞히는 네 판."
+   }
+  },
+  {
+   "id": "lab:limitation/origin-angle",
+   "type": "Limitation",
+   "label": {
+    "ko": "원점에서는 각도가 없다",
+    "en": "Undefined angle at origin"
+   },
+   "page": "03_polar",
+   "anchor": "#s31",
+   "level": 1,
+   "status": "known",
+   "confidence": "high",
+   "coverage": "explained",
+   "family": "coordinates",
+   "domain": [
+    "math",
+    "ai"
+   ],
+   "match": [],
+   "definition": {
+    "ko": "r = 0이면 θ를 정할 수 없다."
+   }
+  },
+  {
+   "id": "lab:question/height",
+   "type": "Question",
+   "label": {
+    "ko": "높이가 생기면 숫자는 몇 개?",
+    "en": "What about height?"
+   },
+   "page": "03_polar",
+   "anchor": "#outro",
+   "level": 1,
+   "status": "known",
+   "confidence": "high",
+   "coverage": "explained",
+   "family": "coordinates",
+   "domain": [
+    "math",
+    "ai"
+   ],
+   "match": [],
+   "definition": {
+    "ko": "4장 공간좌표로 이어지는 질문."
+   }
+  }
+ ],
+ "edges": [
+  {
+   "s": "lab:concept/trig-conversion",
+   "p": "lab:partOf",
+   "o": "lab:concept/polar-coordinates",
+   "anchor": "#s31",
+   "confidence": "high"
+  },
+  {
+   "s": "lab:concept/polar-coordinates",
+   "p": "lab:prerequisiteOf",
+   "o": "lab:concept/arc-length",
+   "anchor": "#s32",
+   "confidence": "high"
+  },
+  {
+   "s": "lab:concept/radian",
+   "p": "lab:prerequisiteOf",
+   "o": "lab:concept/arc-length",
+   "anchor": "#s32",
+   "confidence": "high"
+  },
+  {
+   "s": "lab:analogy/pizza",
+   "p": "lab:analogyOf",
+   "o": "lab:concept/arc-length",
+   "anchor": "#s32",
+   "confidence": "high"
+  },
+  {
+   "s": "lab:analogy/month-clock",
+   "p": "lab:analogyOf",
+   "o": "lab:concept/cyclical-feature",
+   "anchor": "#s33",
+   "confidence": "high"
+  },
+  {
+   "s": "lab:concept/polar-coordinates",
+   "p": "lab:prerequisiteOf",
+   "o": "lab:concept/cyclical-feature",
+   "anchor": "#s33",
+   "confidence": "high"
+  },
+  {
+   "s": "lab:concept/polar-coordinates",
+   "p": "lab:demonstratedBy",
+   "o": "lab:sim/radar-game",
+   "anchor": "#app",
+   "confidence": "high"
+  },
+  {
+   "s": "lab:concept/polar-coordinates",
+   "p": "lab:hasLimitation",
+   "o": "lab:limitation/origin-angle",
+   "anchor": "#s31",
+   "confidence": "high"
+  },
+  {
+   "s": "lab:concept/polar-coordinates",
+   "p": "lab:relatedTo",
+   "o": "lab:question/height",
+   "anchor": "#outro",
+   "confidence": "high"
+  }
+ ]
+}

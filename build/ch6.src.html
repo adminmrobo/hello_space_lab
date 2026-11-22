@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>좌표 첫걸음 6장 데이터의 좌표 — 표 한 줄이 점 하나가 될 때 | 나는 어디에 있는가?</title>
+<meta name="description" content="좌표 첫걸음 6장. 고객 표의 한 줄을 특성 공간의 점으로 놓고, 단위가 다른 축은 표준화로 맞춰 가장 가까운 이웃을 찾고, 축이 여섯 개로 늘어도 같은 거리 공식을 쓰고, 좌표 위에 오차를 세워 최적화 첫걸음으로 넘어갑니다.">
+<meta property="og:type" content="article"><meta property="og:title" content="좌표 첫걸음 6장 데이터의 좌표 — 표 한 줄이 점 하나가 될 때 | 나는 어디에 있는가?"><meta property="og:description" content="좌표 첫걸음 6장. 고객 표의 한 줄을 특성 공간의 점으로 놓고, 단위가 다른 축은 표준화로 맞춰 가장 가까운 이웃을 찾고, 축이 여섯 개로 늘어도 같은 거리 공식을 쓰고, 좌표 위에 오차를 세워 최적화 첫걸음으로 넘어갑니다.">
+<meta property="og:image" content="https://adminmrobo.github.io/hello_space_lab/img/og/ch6.png"><meta property="og:url" content="https://adminmrobo.github.io/hello_space_lab/06_data_space.html"><meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<!--@@CSS@@-->
+<style>
+.tl,.tr{font-weight:700;font-size:13.5px;margin-bottom:4px}.tl{color:var(--amber)}.tr{color:var(--terrain)}
+.hex{display:inline-grid;place-items:center;min-width:44px;height:34px;padding:0 10px;margin-right:10px;border-radius:8px;background:var(--terrain);color:#fff;font-size:17px;vertical-align:4px}
+.sec{padding:40px 0;border-top:1px solid var(--rule)}
+.cast{display:grid;gap:10px}.castc{display:flex;gap:10px;align-items:center;background:var(--panel);border:1px solid var(--rule);border-left:4px solid var(--cc);border-radius:10px;padding:8px 10px}
+.castc img{width:60px;height:60px;flex:none}.castc p{margin:0;font-size:13.5px;color:var(--muted);line-height:1.55}
+.cover .cast4 img{width:11%;max-width:110px}.cover .cast4 img.s{width:7%}
+.num-in{width:7.5em;font:inherit;font-size:16px;padding:4px 8px;border:1px solid var(--rule);border-radius:8px}
+.panel.game{border:2px solid var(--terrain);border-radius:14px}
+.gameintro{background:#f4fbfb;border:1px dashed var(--terrain);border-radius:10px;padding:10px 14px;margin:10px 0;font-size:15px}
+.cwrap.sq{aspect-ratio:1/1;max-width:560px;margin:0 auto;height:auto}
+.cwrap.sq canvas{width:100%;height:100%}
+@media(max-width:520px){.eqt td.m{white-space:normal;word-break:break-all}}
+.diff{display:inline-block;border:1px solid var(--c-asst);color:var(--c-asst);border-radius:999px;padding:0 10px;font-size:12.5px;margin-left:6px}
+</style>
+</head>
+<body>
+<nav class="top" aria-label="섹션 바로가기"><div class="row">
+  <a class="logo" href="index.html">좌표 <i>첫걸음</i> 6장</a>
+  <div class="links"><a href="#s61">6.1 한 줄 = 한 점</a><a href="#s62">6.2 단위 맞추기</a><a href="#s63">6.3 n차원</a><a href="#s64">6.4 높이를 세우면</a><a href="#app">부록 게임</a><a href="#sum">정리</a><a href="#kg">색인</a><a href="#export">꾸러미</a></div>
+</div></nav>
+<div class="cover" id="cover"><div class="frame"><canvas id="cvCover" aria-hidden="true"></canvas><span class="cap">좌표 첫걸음 · 6교시</span><span class="badge">임시 표지 · 픽셀 표지 준비 중</span><div class="cast4"><img src="" data-mood="fly_point" alt="" aria-hidden="true"><img src="" data-mood="doc_board" alt="" aria-hidden="true"><img src="" data-mood="asst_smile" alt="" aria-hidden="true"><img src="" data-mood="robo_calc" alt="" aria-hidden="true"><img src="" data-mood="sia_explain" alt="" aria-hidden="true"><img src="" data-mood="moa_report" alt="" aria-hidden="true"><img src="" data-mood="x1_hint" alt="" aria-hidden="true" class=s><img src="" data-mood="x2_hint" alt="" aria-hidden="true" class=s><img src="" data-mood="x3_hint" alt="" aria-hidden="true" class=s></div><span class="cover-chip">6장 데이터의 좌표 — 표 한 줄이 점 하나가 될 때</span></div></div>
+<header class="hero" id="top"><div class="wrap">
+  <div class="eyebrow">좌표 첫걸음 · 6장 · 최적화 첫걸음의 자매편 <span class="diff">난이도: 오르막</span></div>
+  <h1>6장 데이터의 좌표 — 표 한 줄이 점 하나가 될 때</h1>
+  <p class="question">고객·문장·사진처럼 장소가 아닌 것도 "어디에 있다"고 말할 수 있을까?</p>
+  <p class="lead">표의 열 두 개를 가로·세로 자로 삼으면 줄 하나가 점 하나가 됩니다. 이것이 AI가 데이터를 보는 방식, <b>특성 공간</b>이에요. 이 장은 고객 지도를 그리고, 단위가 다른 축을 표준화로 맞춰 가장 가까운 이웃을 찾고, 축을 여섯 개까지 늘려 보고, 마지막으로 좌표 위에 오차라는 높이를 세워 자매편 「최적화 첫걸음」으로 넘어갑니다.</p>
+  <p class="byline">글 · 안상선 ((주)M-Robo 대표) · <a href="https://adminmrobo.github.io/who_am_i/who_am_i.html">저자 소개</a> · 2026-11-23 · v1.0</p>
+  <div class="start"><b>처음이라면</b> 6.1 → 6.2 → 6.3 → 6.4 순서로 보세요. 1장의 표준화, 2장의 피타고라스, 4장의 공간 거리가 모두 다시 나옵니다.</div>
+  <div class="kpis" aria-label="숫자 요약"><div class="kpi m"><b>1줄 = 1점</b><span>표 한 줄이 특성 공간의 점 하나</span></div><div class="kpi r"><b>B → A</b><span>단위를 맞추자 바뀐 가장 가까운 고객</span></div><div class="kpi g"><b>5</b><span>네 축 차이 (1, 2, 2, 4)의 거리</span></div><div class="kpi a"><b>높이 = 오차</b><span>좌표 위에 세우면 최적화의 지형</span></div></div>
+  <p class="muted" style="font-size:13px">숫자는 이 페이지가 직접 계산한 값이며, 사람·가게·도시 예시는 설명용입니다.</p>
+</div></header>
+<main>
+<section class="sec" id="plain" aria-labelledby="h-plain"><div class="wrap"><h2 id="h-plain">처음 오신 분께 — 이 페이지를 3줄로</h2><ol class="plain3"><li><b>무엇을</b> 표의 한 줄을 공간의 점으로 놓는 특성 공간, 단위 맞추기(표준화), 고차원 거리, 그리고 최적화로 가는 다리를 봅니다.</li><li><b>왜 중요한가</b> 추천·고객 분류·검색 AI는 모두 "점 사이 거리"로 비슷함을 잽니다. 자를 잘못 고르면 엉뚱한 고객에게 쿠폰이 갑니다.</li><li><b>업무에서는</b> "가장 비슷한 고객" 결과를 받으면 단위를 맞췄는지(표준화), 어떤 열을 축으로 썼는지 먼저 확인할 수 있게 됩니다.</li></ol>
+<p class="plain-note">코드와 수식을 몰라도 됩니다. 식이 나오는 단계마다 수강생이 묻고 조교 하루가 학교 수학과 숫자 하나로 풀어 줍니다. 식은 "식으로 보면"을 펼칠 때만 나옵니다. 여기서 한 번 멈춰도 괜찮아요.</p>
+<details class="abbr"><summary>기호·영어 약어 풀이 (4개)</summary><div class="abbr-list"><div><b>KNN</b> <span>k-최근접 이웃</span> — 가장 가까운 점 k개를 보고 판단하는 방법.</div><div><b>z</b> <span>표준화 점수</span> — (값 − 평균) ÷ 표준편차.</div><div><b>n차원</b> <span>축이 n개인 공간</span> — 표의 열이 n개면 n차원.</div><div><b>w₁ · w₂</b> <span>가중치</span> — 모델이 배우는 숫자. 6.4에서 바닥 좌표가 된다.</div></div></details></div></section>
+<section class="sec" id="cast" aria-labelledby="h-cast" style="padding:18px 0 0;border:0"><div class="wrap"><h3 id="h-cast">강의실 사람들</h3>
+<div class="cast" style="grid-template-columns:repeat(auto-fit,minmax(230px,1fr))"><div class="castc" style="--cc:var(--c-doc)"><img data-mood="doc_board" alt="" aria-hidden="true"><div><b>박사</b><p>강의를 맡은 연구실 선생님. 장마다 상황 질문으로 문을 열고 해석 문장으로 닫아요.</p></div></div><div class="castc" style="--cc:var(--c-asst)"><img data-mood="asst_smile" alt="" aria-hidden="true"><div><b>조교 하루</b><p>수식 담당 조교. 시아·모아의 질문을 받아 학교 수학과 숫자 하나로 풀어 줘요.</p></div></div><div class="castc" style="--cc:var(--c-fly)"><img data-mood="fly_point" alt="" aria-hidden="true"><div><b>조교 초파리</b><p>실험 담당 조교. "이걸 눌러 봐"로 실험판을 열고, 답이 그럴듯한지 의심해요.</p></div></div><div class="castc" style="--cc:var(--c-robo)"><img data-mood="robo_calc" alt="" aria-hidden="true"><div><b>조교 주판봇</b><p>계산 담당 조교. 1초 만에 답을 내지만 가끔 너무 빨라요. AI 판단 코너의 주인공.</p></div></div><div class="castc" style="--cc:var(--c-sia)"><img data-mood="sia_smile" alt="" aria-hidden="true"><div><b>수강생 시아</b><p>직관파. 비유부터 꺼내 "그러니까 이런 거죠?"라고 묻는 앞줄 수강생.</p></div></div><div class="castc" style="--cc:var(--c-moa)"><img data-mood="moa_smile" alt="" aria-hidden="true"><div><b>수강생 모아</b><p>꼼꼼파. "그건 언제나 그래요?" 하고 조건과 예외를 묻는 수강생. 차를 준비해 와요.</p></div></div><div class="castc" style="--cc:var(--c-x)"><img data-mood="x1_hint" alt="" aria-hidden="true"><div><b>X1</b><p>뒷줄 수강생. 손을 들 때가 가끔 있어요.</p></div></div><div class="castc" style="--cc:var(--c-x)"><img data-mood="x2_hint" alt="" aria-hidden="true"><div><b>X2</b><p>뒷줄 수강생. 필기를 가장 열심히 해요.</p></div></div><div class="castc" style="--cc:var(--c-x)"><img data-mood="x3_hint" alt="" aria-hidden="true"><div><b>X3</b><p>뒷줄 수강생. 게임 시간에 가장 신나요.</p></div></div></div></div></section>
+<section class="sec" id="open" aria-labelledby="h-open"><div class="wrap">
+<h2 id="h-open"><span class="hex">6</span>장소가 아닌 것의 자리</h2>
+<div data-dlg="open"></div>
+<div class="chain" aria-label="이 시리즈 지도"><span>1장 수직선</span><i>→</i><span>2장 좌표평면</span><i>→</i><span>3장 극좌표</span><i>→</i><span>4장 공간좌표</span><i>→</i><span>5장 지구와 지도</span><i>→</i><span><b>6장 데이터의 좌표</b></span><i>→</i><span>최적화 첫걸음</span></div><div class="review30"><b>30초 복습</b> 1장: 표준화 = 평균 0, 표준편차를 눈금 하나로. 2장·4장: 거리 = 차이를 제곱해 더하고 루트. 5장: 매핑에는 대가가 있다.</div>
+<h3 id="s61" style="font-size:22px;margin-top:64px">6.1 표 한 줄 = 점 하나 — 특성 공간</h3>
+<div class="tags"><span class="tag">방법: 열을 축으로</span><span class="tag">일상: 고객 표</span><span class="tag">바탕: 머신러닝 모델 도감 "같은 모눈 위에"</span></div>
+<div class="easy"><details class="ez-why" open><summary>왜 이 방법을 쓰나</summary><ol><li>문제: 고객 수천 명을 보고 "누가 누구와 비슷한가"를 말해야 합니다.</li><li>앞 방법의 한계: 표를 위에서 아래로 읽어서는 비슷한 줄을 찾기 어렵습니다.</li><li><b>이 방법의 해법: 열 두 개를 가로·세로 자로 삼아 각 줄을 점으로 찍습니다. 비슷한 고객은 가까운 점이 됩니다.</b></li></ol><p class="ez-easy"><b>쉽게 말하면</b> 반 친구들을 키 순·몸무게 순 두 줄로 세운 자리를 지도로 그리기.</p></details><div class="ez-math"><div class="ez-t">시아·모아가 묻고, 조교 하루가 풀어 봅니다</div><div class="ez-q"><img data-mood="sia_think" alt="" aria-hidden="true"><p><b style="display:block;font-size:12.5px;color:var(--muted)">시아</b>표의 줄이 어떻게 점이 돼요? 고객은 위치가 없잖아요.</p></div><p><b>말로 먼저</b> 장소가 아니어도 숫자 두 개만 있으면 순서쌍이 됩니다. 2장에서 (열, 줄)로 좌석을 찾았듯, (나이, 구매액)으로 고객의 자리를 찾는 거예요.</p><p><b>학교 수학으로 보면</b> 좌표평면, 순서쌍, 산점도(통계)</p><div class="try" style="background:#fff;border:1px dashed #e8b67a;border-radius:10px;padding:10px 14px"><b>숫자로 한 번 해 보기</b><ol style="margin:6px 0 0;padding-left:22px"><li>고객 A: 31세, 260천 원 → 점 (31, 260)</li><li>고객 E: 35세, 450천 원 → 점 (35, 450)</li><li>두 점이 가까우면 비슷한 고객</li></ol></div><details class="eqx"><summary>식으로 보면 (몰라도 됩니다)</summary><table class="ez-tb"><thead><tr><th>식 조각</th><th>읽는 법</th><th>뜻</th></tr></thead><tbody><tr><td>(x₁, x₂)</td><td>엑스 일, 엑스 이</td><td>한 줄의 두 열 값 = 점 하나</td></tr><tr><td>n개 열</td><td>엔 개의 열</td><td>n차원 공간의 점</td></tr></tbody></table></details><div class="ez-q ez-c"><img data-mood="asst_spark" alt="" aria-hidden="true"><p><b style="display:block;font-size:12.5px;color:var(--muted)">조교 하루</b>"자리"는 장소가 아니어도 생기는 거였어요!</p></div></div></div>
+<div class="pair"><div><div class="tl">일상으로 치면</div>쇼핑 앱의 "나와 비슷한 사람이 산 상품"도 이렇게 고객을 점으로 놓고 가까운 점을 찾는 데서 시작합니다.</div><div><div class="tr">AI·데이터에서는</div>머신러닝의 입력 데이터는 모두 특성 공간의 점입니다. 분류는 점들 사이에 선을 긋는 일, 군집은 가까운 점끼리 묶는 일이에요. <a href="https://adminmrobo.github.io/machine_learning_model_atlas/">머신러닝 모델 도감</a>은 27가지 모델을 같은 모눈 위에 그려 이 생각을 보여 줍니다.</div></div>
+<div class="dialog lvtalk" data-dlg="s61_t"></div>
+<div class="panel"><div class="ptitle">실험 ① 고객 표와 고객 지도 — 표의 줄을 누르면 지도에서 그 점이 켜집니다</div>
+<div class="twin"><div class="cwrap tall"><canvas id="cv61" aria-label="가로 나이, 세로 월 구매액으로 고객 열 명을 점으로 찍은 산점도"></canvas></div>
+<div class="tblwrap"><table class="cmp" id="t61" style="cursor:pointer"><thead><tr><th>고객</th><th>나이 (세)</th><th>월 구매액 (천 원)</th></tr></thead><tbody><tr data-r61="0"><td>A</td><td>31</td><td>260</td></tr><tr data-r61="1"><td>B</td><td>52</td><td>205</td></tr><tr data-r61="2"><td>C</td><td>25</td><td>120</td></tr><tr data-r61="3"><td>D</td><td>45</td><td>380</td></tr><tr data-r61="4"><td>E</td><td>35</td><td>450</td></tr><tr data-r61="5"><td>F</td><td>58</td><td>150</td></tr><tr data-r61="6"><td>G</td><td>28</td><td>300</td></tr><tr data-r61="7"><td>H</td><td>40</td><td>90</td></tr><tr data-r61="8"><td>I</td><td>23</td><td>240</td></tr><tr data-r61="9"><td>J</td><td>50</td><td>320</td></tr></tbody></table></div></div>
+<div class="insight" id="i61" aria-live="polite"></div></div>
+<div class="say" data-who="doc"><img class="who" data-mood="doc_judge" alt="" aria-hidden="true"><div><b class="name">박사의 정리</b><p>데이터를 받으면 "어떤 열을 축으로 쓸 것인가"가 첫 결정입니다. 축을 고르는 순간 무엇이 가깝고 먼지가 정해져요.</p></div></div>
+<div class="lim"><b>이 단계의 한계</b> 고객 열 명, 열 두 개의 작은 예시입니다. 실제 고객 데이터는 열이 수십~수백 개입니다.</div>
+<div class="quiz" data-quiz="s61"></div>
+<h3 id="s62" style="font-size:22px;margin-top:64px">6.2 단위를 맞추지 않으면 거리가 틀린다</h3>
+<div class="tags"><span class="tag">방법: 표준화 후 거리</span><span class="tag">일상: 쿠폰 보내기</span><span class="tag">AI: 가장 가까운 이웃(KNN)</span></div>
+<div class="easy"><details class="ez-why" open><summary>왜 이 방법을 쓰나</summary><ol><li>문제: 새 손님과 가장 비슷한 기존 고객을 찾아야 합니다.</li><li>앞 방법의 한계: 원래 단위로 거리를 재면 숫자가 큰 열(구매액)이 거리를 혼자 정합니다.</li><li><b>이 방법의 해법: 열마다 표준화(평균 0, 표준편차 1)한 뒤 거리를 잽니다. 모든 열이 공평하게 한 몫씩 말합니다.</b></li></ol><p class="ez-easy"><b>쉽게 말하면</b> 키는 cm, 몸무게는 kg인 채로 더하지 말고, 둘 다 "반에서 몇 번째쯤"으로 바꿔 비교하기.</p></details><div class="ez-math"><div class="ez-t">시아·모아가 묻고, 조교 하루가 풀어 봅니다</div><div class="ez-q"><img data-mood="moa_report" alt="" aria-hidden="true"><p><b style="display:block;font-size:12.5px;color:var(--muted)">모아</b>키를 cm로 쓰느냐 m로 쓰느냐에 따라 거리가 달라져요?</p></div><p><b>말로 먼저</b> 네. 키를 m로 쓰면 3 cm 차이가 0.03이 되어 거의 사라지고, 몸무게 차이 4만 남습니다. 같은 두 사람인데 단위만 바꿨더니 키를 무시하는 거리가 됐어요. 그래서 표준화로 단위를 지웁니다.</p><p><b>학교 수학으로 보면</b> 피타고라스, 평균과 표준편차(통계)</p><div class="try" style="background:#fff;border:1px dashed #e8b67a;border-radius:10px;padding:10px 14px"><b>숫자로 한 번 해 보기</b><ol style="margin:6px 0 0;padding-left:22px"><li>시아 (160 cm, 50 kg)·모아 (163 cm, 54 kg): √(3² + 4²) = 5</li><li>키를 m로: √(0.03² + 4²) = 4.0001 — 키가 거의 사라짐</li><li>고객 예: 원래 단위로는 B, 표준화하면 A가 가장 가깝다</li></ol></div><details class="eqx"><summary>식으로 보면 (몰라도 됩니다)</summary><table class="ez-tb"><thead><tr><th>식 조각</th><th>읽는 법</th><th>뜻</th></tr></thead><tbody><tr><td>z = (x − 평균) ÷ 표준편차</td><td>제트</td><td>열마다 단위를 지운 값</td></tr><tr><td>√(Δz₁² + Δz₂²)</td><td>표준화 거리</td><td>공평한 거리</td></tr></tbody></table></details><div class="ez-q ez-c"><img data-mood="asst_spark" alt="" aria-hidden="true"><p><b style="display:block;font-size:12.5px;color:var(--muted)">조교 하루</b>단위를 바꿨을 뿐인데 거리가 달라지니, 자를 먼저 맞춰야 하네요!</p></div></div></div>
+<div class="pair"><div><div class="tl">일상으로 치면</div>시험 점수 100점 만점과 10점 만점을 그대로 더하면 100점짜리 시험이 성적을 혼자 정합니다.</div><div><div class="tr">AI·데이터에서는</div>KNN·K-means·SVM처럼 거리를 쓰는 모델은 표준화(또는 범위를 0~1로 맞추는 정규화)를 먼저 합니다. 트리 모델처럼 거리를 쓰지 않는 모델은 영향이 적어요.</div></div>
+<div class="dialog lvtalk" data-dlg="s62_t"></div>
+<div class="panel"><div class="ptitle">실험 ② 새 손님 Q (30세, 200천 원)와 가장 가까운 고객 — 자를 바꿔 보세요</div>
+<div class="cwrap sq"><canvas id="cv62" aria-label="가로·세로를 같은 축척으로 그린 고객 지도와 새 손님 Q, 가장 가까운 고객 세 명"></canvas></div>
+<div class="ctrl"><div class="group" role="group" aria-label="자 고르기"><span class="glabel">거리를 재는 자</span><button class="bt" type="button" data-u62="raw" aria-pressed="true">원래 단위 (세, 천 원)</button><button class="bt" type="button" data-u62="z" aria-pressed="false">표준화 자</button></div></div>
+<div class="minis"><div class="mini r"><span>가장 가까운 고객</span><b id="m62a">—</b></div><div class="mini a"><span>2위 · 3위</span><b id="m62b" style="font-size:16px">—</b></div><div class="mini m"><span>Q–B 거리 (52세, 205)</span><b id="m62c">—</b></div><div class="mini g"><span>Q–A 거리 (31세, 260)</span><b id="m62d">—</b></div></div>
+<div class="insight" id="i62" aria-live="polite"></div></div>
+<div class="say" data-who="doc"><img class="who" data-mood="doc_judge" alt="" aria-hidden="true"><div><b class="name">박사의 정리</b><p>거리를 재기 전에 "모든 축이 같은 자인가?"를 확인하세요. 아니면 표준화로 맞춥니다. 1장의 표준화 자가 바로 이때 쓰입니다.</p></div></div>
+<div class="aibox" id="ai62"><div class="aihead"><span class="aitag">AI 판단 코너</span>조교 주판봇의 1초 답, 믿어도 될까?</div><div data-dlg="ai62_d"></div><p>박사는 늘 두 가지를 묻습니다. "가정이 맞나? 숫자가 그럴듯한가?"</p><ol><li>나이(세)와 구매액(천 원)은 같은 단위인가?</li><li>30세 손님과 가장 닮은 고객이 52세라는 결과가 그럴듯한가?</li></ol><details class="eqx"><summary>확인해 보기 (먼저 스스로 따져 본 뒤 펼치세요)</summary><p class="aiverdict">원래 단위로 재면 구매액 차이가 거리의 대부분을 차지해서 22살 차이 나는 B가 1등이 됩니다. 열마다 표준화하면 <b>A(31세, 260천 원)</b>가 가장 가깝습니다. 계산은 맞았지만 <b>자를 맞추지 않았습니다.</b></p><div data-dlg="ai62_e"></div></details></div>
+<div class="lim"><b>이 단계의 한계</b> 표준화가 늘 정답은 아닙니다. 어떤 열이 업무상 더 중요하면 일부러 가중치를 주기도 해요. 중요한 것은 "어떤 자로 쟀는지 알고 고르는 것"입니다.</div>
+<details class="eqx"><summary>파이썬 코드로 보면 (몰라도 됩니다)</summary><table class="ez-tb eqt"><tbody><tr><td class="m">StandardScaler().fit_transform(X)</td><td>열마다 표준화</td></tr><tr><td class="m">NearestNeighbors(n_neighbors=3)</td><td>가장 가까운 이웃 세 명 찾기</td></tr></tbody></table></details>
+<div class="quiz" data-quiz="s62"></div>
+<h3 id="s63" style="font-size:22px;margin-top:64px">6.3 축이 셋을 넘으면 — n차원의 거리</h3>
+<div class="tags"><span class="tag">방법: n차원 유클리드 거리</span><span class="tag">일상: 고객 프로필</span><span class="tag">AI: 임베딩</span></div>
+<div class="easy"><details class="ez-why" open><summary>왜 이 방법을 쓰나</summary><ol><li>문제: 고객을 나이·구매액만이 아니라 방문 수·체류 시간·쿠폰 사용·앱 접속까지 보고 비교하고 싶습니다.</li><li>앞 방법의 한계: 4장까지는 축 세 개라 그림을 그릴 수 있었습니다. 넷부터는 그릴 수 없어요.</li><li><b>이 방법의 해법: 그림 대신 계산을 믿습니다. 축이 몇 개든 차이를 제곱해 모두 더하고 루트.</b></li></ol><p class="ez-easy"><b>쉽게 말하면</b> 과목이 몇 개든 "과목별 점수 차이"를 모아 한 숫자로 만드는 것.</p></details><div class="ez-math"><div class="ez-t">시아·모아가 묻고, 조교 하루가 풀어 봅니다</div><div class="ez-q"><img data-mood="moa_report" alt="" aria-hidden="true"><p><b style="display:block;font-size:12.5px;color:var(--muted)">모아</b>4차원은 상상도 안 되는데, 거리는 어떻게 믿어요?</p></div><p><b>말로 먼저</b> 2차원에서 3차원으로 갈 때 제곱 하나를 더 붙였죠. 4차원도 하나 더 붙일 뿐이에요. 그림은 상상하지 못해도 더하기는 할 수 있습니다.</p><p><b>학교 수학으로 보면</b> 피타고라스의 확장, 수열의 합(Σ)</p><div class="try" style="background:#fff;border:1px dashed #e8b67a;border-radius:10px;padding:10px 14px"><b>숫자로 한 번 해 보기</b><ol style="margin:6px 0 0;padding-left:22px"><li>두 고객의 표준화 차이: 1, 2, 2, 4</li><li>1 + 4 + 4 + 16 = 25</li><li>√25 = 5</li></ol></div><details class="eqx"><summary>식으로 보면 (몰라도 됩니다)</summary><table class="ez-tb"><thead><tr><th>식 조각</th><th>읽는 법</th><th>뜻</th></tr></thead><tbody><tr><td>√(Σ (aᵢ − bᵢ)²)</td><td>루트 시그마</td><td>n개 축의 거리</td></tr><tr><td>Σ</td><td>시그마</td><td>모두 더하기</td></tr></tbody></table></details><div class="ez-q ez-c"><img data-mood="asst_spark" alt="" aria-hidden="true"><p><b style="display:block;font-size:12.5px;color:var(--muted)">조교 하루</b>축이 늘어도 할 일은 "제곱해서 더하기" 하나였어요.</p></div></div></div>
+<div class="pair"><div><div class="tl">일상으로 치면</div>여행지 추천도 "날씨·물가·거리·음식·치안"처럼 여러 축으로 점을 찍고 가까운 곳을 찾습니다.</div><div><div class="tr">AI·데이터에서는</div>문장·사진을 숫자 수백~수천 개로 바꾼 <b>임베딩</b>은 고차원 공간의 점입니다. 벡터 DB는 이 점들 사이 거리(또는 각도)로 비슷한 문장을 찾아요(<a href="https://adminmrobo.github.io/vector_db_lab/">벡터 DB 연구실</a>). 고차원 점을 2D 그림으로 보여 주는 일도 5장처럼 대가가 있는 "매핑"입니다.</div></div>
+<div class="dialog lvtalk" data-dlg="s63_t"></div>
+<div class="panel"><div class="ptitle">실험 ③ 축을 늘려 보기 — 두 고객의 표준화 차이를 한 열씩 더하면</div>
+<div class="cwrap"><canvas id="cv63" aria-label="열마다 두 고객의 차이를 제곱한 막대와 누적 거리"></canvas></div>
+<div class="ctrl"><div class="group"><label class="glabel" for="r63">쓰는 열(축)의 수</label><input type="range" id="r63" min="1" max="6" step="1" value="4"><span class="val" id="r63v">4개</span></div></div>
+<div class="minis"><div class="mini a"><span>축 수</span><b id="m63a">—</b></div><div class="mini m"><span>차이 제곱의 합</span><b id="m63b">—</b></div><div class="mini g"><span>거리 (루트)</span><b id="m63c">—</b></div><div class="mini r"><span>그림으로 그릴 수 있나?</span><b id="m63d">—</b></div></div>
+<div class="eq" id="eq63"></div><div class="insight" id="i63" aria-live="polite"></div></div>
+<div class="say" data-who="doc"><img class="who" data-mood="doc_judge" alt="" aria-hidden="true"><div><b class="name">박사의 정리</b><p>고차원은 그림이 아니라 계산으로 다룹니다. 다만 축이 아주 많으면 모든 점이 비슷하게 멀어지는 일이 생겨서, 쓸 축을 고르거나 줄이는 작업이 함께 필요해요.</p></div></div>
+<div class="lim"><b>이 단계의 한계</b> 차이 값 (1, 2, 2, 4, 2, 4)는 설명용 숫자입니다. "축이 많을수록 거리가 덜 구별된다"는 현상(차원의 저주)은 여기서 다루지 않았어요.</div>
+<div class="quiz" data-quiz="s63"></div>
+<h3 id="s64" style="font-size:22px;margin-top:64px">6.4 좌표 위에 높이를 세우면 — 최적화 첫걸음으로</h3>
+<div class="tags"><span class="tag">방법: 오차 지형</span><span class="tag">다음: 최적화 첫걸음</span><span class="tag">바탕: 좌표축 위의 그릇</span></div>
+<div class="easy"><details class="ez-why" open><summary>왜 이 방법을 쓰나</summary><ol><li>문제: AI 모델의 숫자(가중치)를 어떻게 골라야 오차가 가장 작을까요?</li><li>앞 방법의 한계: "나는 어디에 있는가"만으로는 어디로 가야 할지 모릅니다.</li><li><b>이 방법의 해법: 가중치를 바닥 좌표로, 오차를 높이로 세운 지형을 그리고, 가장 가파른 내리막 쪽으로 한 걸음씩 걷습니다.</b></li></ol><p class="ez-easy"><b>쉽게 말하면</b> 안개 낀 산에서 발밑 기울기만 보고 골짜기로 내려가기.</p></details><div class="ez-math"><div class="ez-t">시아·모아가 묻고, 조교 하루가 풀어 봅니다</div><div class="ez-q"><img data-mood="sia_think" alt="" aria-hidden="true"><p><b style="display:block;font-size:12.5px;color:var(--muted)">시아</b>"가장 가파른 내리막" 화살표는 어떻게 알아요?</p></div><p><b>말로 먼저</b> 바닥의 두 방향(w₁, w₂)으로 조금씩 움직여 보고 높이가 얼마나 바뀌는지 재면 됩니다. 그 기울기를 미분이라고 부르고, 이 이야기는 자매편 「최적화 첫걸음」에서 처음부터 다룹니다.</p><p><b>학교 수학으로 보면</b> 이차함수의 꼭짓점, 미분(접선의 기울기)</p><div class="try" style="background:#fff;border:1px dashed #e8b67a;border-radius:10px;padding:10px 14px"><b>숫자로 한 번 해 보기</b><ol style="margin:6px 0 0;padding-left:22px"><li>지금 자리 (−1, 3.5): 오차 = ½ × 4 + 6.25 = 8.25</li><li>내리막 화살표 = (2, −5)</li><li>바닥 (1, 1)에서 오차 0</li></ol></div><details class="eqx"><summary>식으로 보면 (몰라도 됩니다)</summary><table class="ez-tb"><thead><tr><th>식 조각</th><th>읽는 법</th><th>뜻</th></tr></thead><tbody><tr><td>오차 = ½(w₁ − 1)² + (w₂ − 1)²</td><td>그릇 모양 높이</td><td>설명용 오차 지형</td></tr><tr><td>−(기울기)</td><td>마이너스 기울기</td><td>가장 가파른 내리막 방향</td></tr></tbody></table></details><div class="ez-q ez-c"><img data-mood="asst_spark" alt="" aria-hidden="true"><p><b style="display:block;font-size:12.5px;color:var(--muted)">조교 하루</b>"어디에 있나"(좌표)와 "어디로 가나"(화살표)를 합치면 최적화였어요!</p></div></div></div>
+<div class="pair"><div><div class="tl">일상으로 치면</div>내비게이션은 "지금 위치"(좌표)를 알아야 "다음 회전"(방향)을 알려 줍니다.</div><div><div class="tr">AI·데이터에서는</div>모든 AI 학습은 이 지형 위의 걷기입니다. 실제 모델은 바닥 축이 수백만~수천억 개라 그릴 수 없지만, 걷는 법은 같습니다 → <a href="https://adminmrobo.github.io/optimization_3d_map/first_step_0.html">최적화 첫걸음 ⓪</a>, <a href="https://adminmrobo.github.io/optimization_3d_map/1_math_map.html">좌표축 위의 그릇 1편</a></div></div>
+<div class="dialog lvtalk" data-dlg="s64_t"></div>
+<div class="panel"><div class="ptitle">실험 ④ 좌표 위에 높이(오차)를 세우면 — "나는 어디에"에서 "어디로 가야 하나"로</div>
+<div class="cwrap t3"><canvas id="cv64" aria-label="가중치 w₁·w₂를 바닥 좌표로, 오차를 높이로 세운 그릇 모양 곡면과 지금 자리, 내리막 화살표"></canvas><span class="hint">끌어서 돌리기</span></div>
+<div class="ctrl"><div class="group"><label class="glabel" for="r64a">지금 자리 w₁</label><input type="range" id="r64a" min="-2" max="4" step="0.1" value="-1"><span class="val" id="r64av">-1.0</span>
+<label class="glabel" for="r64b">w₂</label><input type="range" id="r64b" min="-2" max="4" step="0.1" value="3.5"><span class="val" id="r64bv">3.5</span><button class="bt" type="button" id="b64">내리막으로 한 걸음</button></div></div>
+<div class="minis"><div class="mini m"><span>나는 어디에 (w₁, w₂)</span><b id="m64a">—</b></div><div class="mini r"><span>이 자리의 높이 (오차)</span><b id="m64b">—</b></div><div class="mini a"><span>가장 가파른 내리막 화살표</span><b id="m64c" style="font-size:16px">—</b></div><div class="mini g"><span>바닥까지 남은 거리</span><b id="m64d">—</b></div></div>
+<div class="insight" id="i64" aria-live="polite"></div></div>
+<div class="say" data-who="doc"><img class="who" data-mood="doc_judge" alt="" aria-hidden="true"><div><b class="name">박사의 정리</b><p>좌표는 "나는 어디에 있는가", 최적화는 "어디로 가야 하나"입니다. 이 시리즈가 앞의 질문을, 자매편이 뒤의 질문을 맡아요.</p></div></div>
+<div class="lim"><b>이 단계의 한계</b> 그릇 모양(바닥이 하나)인 단순한 지형만 봤습니다. 실제 오차 지형에는 안장점·여러 골짜기가 있어요(그릇 1편).</div>
+<div class="quiz" data-quiz="s64"></div>
+</div></section>
+<section class="sec" id="app" aria-labelledby="h-app"><div class="wrap">
+<h2 id="h-app"><span class="hex">부록</span>쿠폰 담당자 — 새 손님의 가장 가까운 이웃 찾기</h2>
+<p>같은 손님도 어떤 자로 재느냐에 따라 "가장 닮은 고객"이 바뀝니다. 네 판 중 한 판은 자를 바꿔도 답이 같아요.</p>
+<div data-dlg="app"></div>
+<div class="gameintro"><b>게임 방법</b> 새 손님이 오면 가장 가까운 기존 고객과 비슷하다고 보고 같은 쿠폰을 보냅니다(가장 가까운 이웃 찾기). 판마다 정해진 자로 잰다고 했을 때 <b>가장 가까운 고객의 점</b>을 눌러 고르고 <b>확인</b>을 누르세요. 그림은 판마다 그 자의 축척으로 다시 그려집니다.</div>
+<div class="panel game"><div class="ptitle">부록 게임 · 쿠폰 담당자 — 새 손님의 가장 가까운 이웃 찾기</div>
+<div class="cwrap sq"><canvas id="cvA" aria-label="고객 지도와 새 손님, 내가 고른 고객"></canvas></div>
+<div class="minis"><div class="mini a"><span>이번 판의 자</span><b id="mAa" style="font-size:16px">—</b></div><div class="mini m"><span>새 손님</span><b id="mAb" style="font-size:16px">—</b></div><div class="mini g"><span>내가 고른 고객</span><b id="mAc">—</b></div><div class="mini r"><span>그 고객까지 거리</span><b id="mAd">—</b></div></div>
+<div id="gA"></div></div>
+</div></section>
+<section class="sec" id="sum" aria-labelledby="h-sum"><div class="wrap">
+<h2 id="h-sum">정리 — 데이터에 좌표를 붙이는 법</h2>
+<div class="tblwrap"><table class="cmp"><thead><tr><th>질문</th><th>답 한 줄</th><th>단계</th></tr></thead><tbody><tr><td>표 한 줄은?</td><td>특성 공간의 점 하나. 열이 축이다.</td><td>6.1</td></tr><tr><td>거리를 재기 전에?</td><td>축마다 단위가 다르면 표준화로 자를 맞춘다.</td><td>6.2</td></tr><tr><td>축이 많으면?</td><td>그림은 못 그려도 거리 공식은 같다.</td><td>6.3</td></tr><tr><td>그다음은?</td><td>좌표 위에 오차를 세우고 내리막으로 걷는다 = 최적화.</td><td>6.4</td></tr></tbody></table></div>
+<h3>용어 대응 카드</h3><div class="gloss"><div><b>특성 공간</b> = 데이터의 열을 축으로 삼은 공간.</div><div><b>표준화</b> = 평균 0, 표준편차 1로 맞춘 자.</div><div><b>KNN</b> = 가장 가까운 이웃으로 판단하는 방법.</div><div><b>n차원 거리</b> = √(차이 제곱의 합).</div><div><b>임베딩</b> = 문장·사진을 고차원 점으로 바꾼 것.</div><div><b>오차 지형</b> = 가중치를 바닥, 오차를 높이로 세운 그림.</div></div>
+<h3>비유와 예시의 한계</h3><ul><li>고객 열 명·두 열의 작은 설명용 데이터입니다.</li><li>오차 지형은 바닥이 하나인 그릇 모양만 다뤘습니다.</li></ul>
+<div class="bridge gen" style="background:var(--info-soft);border:1px solid #c3d3f1;border-radius:12px;padding:14px 18px;margin:16px 0"><b>자매편으로 — 「최적화 첫걸음」</b> 좌표 첫걸음은 "나는 어디에 있는가"에 답했습니다. 다음 질문 "어디로 가야 오차가 줄어드나"는 <a href="https://adminmrobo.github.io/optimization_3d_map/first_step_0.html">최적화 첫걸음 ⓪ 인공지능 모델에서의 최적화</a> → <a href="https://adminmrobo.github.io/optimization_3d_map/first_step_1.html">① 혹시… 미분 좋아하세요?</a>에서 이어집니다. 그 전에 <a href="practice/index.html">마지막 장 · 실전 연습장</a>에서 1~6장을 한 번에 복습해 보세요.</div>
+<div class="next"><a href="practice/index.html"><b>마지막 장 · 실전 연습장 →</b><br>배송센터·관제탑·물류창고·추천 매장 네 현장</a><a href="https://adminmrobo.github.io/optimization_3d_map/first_step_0.html"><b>자매편 최적화 첫걸음 →</b><br>어디로 가야 하나</a><a href="05_earth_map.html"><b>← 5장 지구와 지도</b><br></a><a href="index.html"><b>목차</b><br></a></div>
+</div></section>
+<section class="sec" id="outro" aria-labelledby="h-outro"><div class="wrap"><h2 id="h-outro">아웃트로 — 수업을 마치며</h2><div data-dlg="outro"></div></div></section>
+</main>
+<footer><div class="wrap">
+<h3>출처 — 이 페이지가 다시 쓴 연구실 콘텐츠</h3>
+<table><thead><tr><th>#</th><th>자료</th><th>이 페이지에서 쓴 곳</th></tr></thead><tbody><tr><td>[1]</td><td>안상선, 「머신러닝 모델 도감」 (machine_learning_model_atlas)</td><td>6.1 데이터를 같은 모눈 위의 점으로 보는 생각</td></tr><tr><td>[2]</td><td>안상선, 「벡터 DB 연구실」 (vector_db_lab)</td><td>6.3 임베딩과 고차원 점 사이 거리</td></tr><tr><td>[3]</td><td>안상선, 「텐서 연구실」 (what_is_tensor)</td><td>6.3 숫자 묶음을 축이 여러 개인 자리로 보기</td></tr><tr><td>[4]</td><td>안상선, 「좌표축 위의 그릇·최적화 첫걸음」 (optimization_3d_map)</td><td>6.4 가중치를 좌표축, 오차를 높이로 세운 지형과 Surf3D 그림 모듈</td></tr><tr><td>[5]</td><td>안상선, 「벡터 분석 랩」 0편 입구 방 (vector_analysis_lab)</td><td>6.2 시아·모아 거리 5와 단위 이야기</td></tr></tbody></table>
+<h3>예시값·설명용 모형인 것</h3><ul><li>고객 열 명의 나이·월 구매액, 새 손님 네 명</li><li>두 고객의 표준화 차이 (1, 2, 2, 4, 2, 4)</li><li>오차 지형 ½(w₁ − 1)² + (w₂ − 1)²</li></ul>
+<p>캐릭터 이름·설정·그림은 저작권자 안상선의 허락 없이 사용할 수 없습니다.</p>
+<p>글 · 안상선 ((주)M-Robo 대표) · <a href="https://adminmrobo.github.io/who_am_i/who_am_i.html">저자 소개</a> · <a href="index.html">좌표 첫걸음 목차</a> · 자매편 <a href="https://adminmrobo.github.io/optimization_3d_map/first_step_0.html">최적화 첫걸음</a></p>
+</div></footer>
+<script>
+/*@@SPRITES@@*/
+/*@@COMMON@@*/
+/*@@SPACE@@*/
+(function(){
+'use strict';
+var $=U.$,$$=U.$$,fmt=U.fmt,cssv=U.cssv,V=PG.V,rng=PG.rng,txt=PG.txt;
+U.dialogues({"open": [["doc", "doc_board", "마지막 시간입니다. 지금까지 자리를 찾은 곳은 길, 강의실, 창고, 지구였어요. 오늘은 장소가 아닌 것의 자리를 찾습니다. 고객 한 명은 어디에 있을까요?"], ["sia", "sia_think", "고객은… 가게에 있죠?"], ["moa", "moa_report", "아, 표의 한 줄이요! 나이와 구매액, 숫자 두 개면 좌표평면의 점이 되잖아요."], ["doc", "doc_front", "맞아요. 표 한 줄이 공간의 점 하나가 되는 순간, 1~5장에서 배운 거리·자·매핑이 모두 데이터에 그대로 쓰입니다. 이게 AI가 데이터를 보는 방식이에요."], ["x1", "x1_hint", "(손을 든다) 열이 백 개면요?"], ["asst", "asst_smile", "6.3에서 같이 해 봐요. 그림은 못 그려도 계산은 똑같아요."]], "s61_t": [["doc", "doc_front", "고객 열 명의 표가 있습니다. 표의 줄 하나를 누르면 지도에서 그 점이 켜져요."], ["robo", "robo_smile", "표는 제 주판이 좋아하는 모양이에요!"], ["fly", "fly_point", "표에서 E를 눌러 봐. 지도 어디가 켜지는지."]], "s62_t": [["doc", "doc_front", "30세, 월 200천 원 쓰는 새 손님 Q가 왔어요. 비슷한 기존 고객을 찾아 같은 쿠폰을 보내려고 합니다."], ["robo", "robo_calc", "2장 피타고라스로 바로 계산하겠습니다!"], ["fly", "fly_point", "먼저 원래 단위로 보고, \"표준화 자\" 버튼으로 바꿔 봐. 1등이 바뀌는지."]], "s63_t": [["doc", "doc_front", "고객 표에 열이 여섯 개 있다면, 두 고객 사이 거리는 어떻게 잴까요?"], ["x3", "x3_hint", "6차원이요? 머리 아파요!"], ["fly", "fly_point", "축 수 슬라이더를 1부터 올려 봐. 막대 하나씩 더해지는 게 전부야."]], "s64_t": [["doc", "doc_front", "이제 마지막 장면이에요. 좌표 위에 높이를 세워 봅시다. 바닥은 모델의 숫자 두 개, 높이는 그 숫자로 냈을 때의 오차."], ["sia", "sia_explain", "그럼 \"나는 어디에 있는가\"는 \"모델이 지금 어떤 숫자를 쓰고 있나\"가 되는 거네요!"], ["fly", "fly_point", "\"내리막으로 한 걸음\"을 몇 번 눌러 봐. 빨간 점이 어디로 가는지."]], "ai62_d": [["robo", "robo_coin", "피타고라스로 계산했습니다. 새 손님과 가장 가까운 고객은 B! 52세 고객과 같은 쿠폰을 보내면 됩니다. 계산 끝!"]], "ai62_e": [["robo", "robo_sigh", "천 원 단위 숫자가 커서 나이를 무시해 버렸군요. 표준화하니 A가 나와요. 단위부터 맞출게요."]], "app": [["x3", "x3_hint", "마지막 게임!"], ["asst", "asst_firm", "판마다 쓰는 자가 달라요. 그림의 축척도 그 자에 맞춰 바뀌니, 눈으로 봐도 어느 정도 보여요."], ["robo", "robo_calc", "고른 고객까지의 거리는 아래 숫자 상자에 띄워 드릴게요."]], "outro": [["doc", "doc_magic", "좌표 첫걸음 마지막 세 줄입니다.<br>① 표 한 줄은 특성 공간의 점 하나. 열 수가 곧 축 수다.<br>② 축마다 단위가 다르면 표준화로 자를 맞춘 뒤 거리를 잰다.<br>③ 좌표 위에 오차라는 높이를 세우면 \"나는 어디에 있는가\"가 \"어디로 가야 하나\"가 된다. 그것이 최적화다."], ["moa", "moa_tea", "수직선 하나에서 시작해서 여기까지 왔네요. 차 한 잔씩 드세요."], ["sia", "sia_smile", "다음 수업은 \"어디로 가야 하나\"죠?"], ["x1", "x1_hint", "(박수) 짝짝짝"], ["x2", "x2_hint", "(필기 마무리) 기준점·방향·눈금!"], ["x3", "x3_hint", "게임 또 해도 돼요?"], ["doc", "doc_think", "물론이죠. 마지막 장의 실전 연습장에서 네 가지 현장을 직접 운영해 보세요. 그리고 다음 걸음은 자매편 「최적화 첫걸음」입니다."]]});
+U.fillImgs();
+SP.drawCover&&SP.drawCover($('#cvCover'),"data");
+
+var CU=[["A", 31, 260], ["B", 52, 205], ["C", 25, 120], ["D", 45, 380], ["E", 35, 450], ["F", 58, 150], ["G", 28, 300], ["H", 40, 90], ["I", 23, 240], ["J", 50, 320]],PT=CU.map(function(c){return [c[1],c[2]];}),MU=[SP.mean(PT.map(function(p){return p[0];})),SP.mean(PT.map(function(p){return p[1];}))],SD=[SP.sd(PT.map(function(p){return p[0];})),SP.sd(PT.map(function(p){return p[1];}))];
+function zz(p){return [(p[0]-MU[0])/SD[0],(p[1]-MU[1])/SD[1]];}
+function rank(q,mode){return PT.map(function(p,i){var d=mode==='z'?SP.dist(zz(p),zz(q)):SP.dist(p,q);return [i,d];}).sort(function(a,b){return a[1]-b[1];});}
+/* 같은 축척 지도: mode raw면 (세, 천 원)을 같은 눈금으로, z면 표준화 눈금으로 */
+function cmap(cv,mode,q,hi,pick){var pts=PT.map(function(p){return mode==='z'?zz(p):p;}),qq=q?(mode==='z'?zz(q):q):null,P;
+  if(mode==='z')P=SP.Plane(cv,{xr:[-2.5,2.5],yr:[-2.5,2.5],xl:'나이 (표준화)',yl:'구매액 (표준화)',lstep:1});
+  else P=SP.Plane(cv,{xr:[0,480],yr:[0,480],xl:'나이 (세)',yl:'월 구매액 (천 원)',step:40,lstep:80});
+  pts.forEach(function(p,i){var on=hi&&hi.indexOf(i)>=0;SP.dot(P,p[0],p[1],on?U.cssv('--eye'):(i===pick?U.cssv('--info'):U.cssv('--terrain')),on||i===pick?7:5,CU[i][0],8,-10);});
+  if(qq){SP.dot(P,qq[0],qq[1],U.cssv('--amber'),8,'Q',8,16);if(hi&&hi.length){var b=pts[hi[0]];SP.seg(P,qq,b,U.cssv('--eye'),2,[5,4]);SP.circ(P,qq[0],qq[1],SP.dist(qq,b),'rgba(201,48,44,.35)',1.2,[4,4]);}}
+  return {P:P,pts:pts};}
+/* 6.1 */
+var h61=0;
+var v61=V($('#cv61'),function(){var P=SP.Plane($('#cv61'),{xr:[15,65],yr:[50,480],free:true,xl:'나이 (세)',yl:'월 구매액 (천 원)',step:5,lstep:10,ystep:50,ylstep:100});
+  PT.forEach(function(p,i){SP.dot(P,p[0],p[1],i===h61?U.cssv('--eye'):U.cssv('--terrain'),i===h61?8:5,CU[i][0],8,-10);});var p=PT[h61];SP.seg(P,[p[0],50],p,'rgba(201,48,44,.4)',1.2,[4,4]);SP.seg(P,[15,p[1]],p,'rgba(201,48,44,.4)',1.2,[4,4]);});
+function up61(){var c=CU[h61];$$('#t61 tr[data-r61]').forEach(function(tr){tr.style.background=+tr.dataset.r61===h61?'var(--eye-soft)':'';});
+  U.ins($('#i61'),[['m','고객 '+c[0]+'의 줄 ('+c[1]+'세, '+c[2]+'천 원)이 지도 위 점 ('+c[1]+', '+c[2]+') 하나가 됐습니다. 열 두 개를 가로·세로 자로 고르면 표의 모든 줄이 좌표평면의 점이 됩니다.'],['g','이렇게 데이터를 점으로 놓은 공간을 <b>특성 공간</b>이라고 해요. 이제 2장의 거리로 "어느 고객끼리 닮았나"를 잴 수 있습니다.']]);v61.dirty=true;}
+$$('#t61 tr[data-r61]').forEach(function(tr){tr.onclick=function(){h61=+tr.dataset.r61;up61();};});up61();
+/* 6.2 */
+var Q=[30,200],u62='raw';
+var v62=V($('#cv62'),function(){var r=rank(Q,u62);cmap($('#cv62'),u62,Q,[r[0][0],r[1][0],r[2][0]]);});
+function up62(){var r=rank(Q,u62),b=PT[r[0][0]],dq=u62==='z'?[(b[0]-Q[0])/SD[0],(b[1]-Q[1])/SD[1]]:[b[0]-Q[0],b[1]-Q[1]],s=dq[0]*dq[0]+dq[1]*dq[1];
+  $('#m62a').textContent=CU[r[0][0]][0]+' ('+CU[r[0][0]][1]+'세, '+CU[r[0][0]][2]+')';$('#m62b').textContent=CU[r[1][0]][0]+' · '+CU[r[2][0]][0];var dd=function(i){return u62==='z'?SP.dist(zz(PT[i]),zz(Q)):SP.dist(PT[i],Q);};$('#m62c').textContent=fmt(dd(1),2);$('#m62d').textContent=fmt(dd(0),2);
+  U.ins($('#i62'),u62==='raw'?[['r','원래 단위로 재면 가장 가까운 고객은 <b>'+CU[r[0][0]][0]+'</b>('+CU[r[0][0]][1]+'세)입니다. 30세 손님과 나이가 22살 차이인데도요. 구매액 차이는 수십~수백, 나이 차이는 수십이라 구매액이 비슷한 고객이 거의 무조건 이깁니다. A는 나이가 1살 차이지만 구매액이 60 차이라 밀려났어요.'],['a','그림도 보세요. 가로·세로를 같은 눈금으로 그리면 나이 축은 납작하게 눌려 있습니다. 숫자 크기가 곧 영향력이 돼 버린 거예요.']]
+    :[['g','표준화 자(평균 0, 표준편차 = 눈금 하나)로 재면 가장 가까운 고객은 <b>'+CU[r[0][0]][0]+'</b>('+CU[r[0][0]][1]+'세, '+CU[r[0][0]][2]+'천 원)로 바뀝니다. 나이와 구매액이 공평하게 한 몫씩 말하기 때문이에요.'],['m','1장 부록에서 만든 표준화 자를 열마다 씌운 것입니다. 나이 표준편차 약 11.6세, 구매액 약 109천 원이 각 자의 눈금 하나가 됩니다.']]);v62.dirty=true;}
+$$('[data-u62]').forEach(function(b){b.onclick=function(){u62=b.dataset.u62;$$('[data-u62]').forEach(function(x){x.setAttribute('aria-pressed',String(x===b));});up62();};});up62();
+/* 6.3 */
+var DF=[1,2,2,4,2,4],NM=['나이','구매액','방문 수','평균 체류 시간','쿠폰 사용','앱 접속'],k63=4;
+var v63=V($('#cv63'),function(){var R=U.setup($('#cv63')),g=R.g,w=R.w,h=R.h;U.grid24(g,w,h);var L=w*0.06,bw=(w*0.88)/6,base=h-40,sc=(h-80)/16,cum=0;
+  for(var i=0;i<6;i++){var on=i<k63,v=DF[i]*DF[i];g.fillStyle=on?U.cssv('--terrain'):'rgba(22,33,43,.1)';g.fillRect(L+i*bw+8,base-v*sc,bw-16,v*sc);g.fillStyle=on?U.cssv('--text'):U.cssv('--muted');g.font='12px '+U.cssv('--font');g.textAlign='center';
+    g.fillText(NM[i],L+i*bw+bw/2,base+16);g.fillText('차이 '+DF[i]+' → '+v,L+i*bw+bw/2,base-v*sc-8);if(on)cum+=v;}
+  U.label(g,w-12,22,'제곱 합 '+cum+' → 거리 √'+cum+' = '+fmt(Math.sqrt(cum),2),U.cssv('--gfp'),'right');U.stamp(g,w*0.6,'설명용 예시');});
+function up63(){var s=0,parts=[];for(var i=0;i<k63;i++){s+=DF[i]*DF[i];parts.push(DF[i]+'²');}$('#m63a').textContent=k63+'개';$('#m63b').textContent=s;$('#m63c').textContent=fmt(Math.sqrt(s),2);$('#m63d').textContent=k63<=3?'그릴 수 있다':'못 그린다, 계산은 된다';
+  $('#eq63').innerHTML='거리 = √('+parts.join(' + ')+') = √'+s+' = <b>'+fmt(Math.sqrt(s),2)+'</b>';
+  U.ins($('#i63'),[['m',k63+'개 축의 공간에서도 거리 재는 법은 2장·4장과 똑같습니다. 차이를 제곱해 모두 더하고 루트.'],['g',k63<=3?'축이 3개까지는 4장처럼 그림으로 그릴 수 있어요.':'축이 '+k63+'개면 그림으로는 못 그리지만 계산은 그대로 됩니다. 문장 임베딩은 숫자 수백~수천 개, 곧 수백 차원 공간의 점이에요.']]);v63.dirty=true;}
+rng('r63',function(v){k63=v;up63();},function(v){return v+'개';});
+/* 6.4 그릇 */
+function Lf(a,b){return 0.5*(a-1)*(a-1)+(b-1)*(b-1);}
+var w64=[-1,3.5],S64=new U.Surf3D($('#cv64'),{f:Lf,xr:[-2,4],yr:[-2,4],axes:['w₁','w₂','오차'],n:28,zoom:0.95});
+S64.ov.push(function(g,S){var z=Lf(w64[0],w64[1]),p=S.P(w64[0],w64[1],z),gr=[-(w64[0]-1),-2*(w64[1]-1)],n=Math.hypot(gr[0],gr[1])||1,st=0.9;
+  var t=[w64[0]+gr[0]/n*st,w64[1]+gr[1]/n*st],q=S.P(t[0],t[1],Lf(t[0],t[1]));U.arrow2(g,p[0],p[1],q[0],q[1],U.cssv('--amber'),2.6);
+  var b0=S.P(w64[0],w64[1],S.zr[0]);g.setLineDash([3,3]);g.strokeStyle='rgba(22,33,43,.4)';g.beginPath();g.moveTo(p[0],p[1]);g.lineTo(b0[0],b0[1]);g.stroke();g.setLineDash([]);
+  g.beginPath();g.arc(p[0],p[1],7,0,7);g.fillStyle=U.cssv('--eye');g.fill();U.label(g,p[0]+10,p[1]-12,'나는 여기',U.cssv('--eye'));var m=S.P(1,1,0);g.beginPath();g.arc(m[0],m[1],5,0,7);g.fillStyle=U.cssv('--gfp');g.fill();U.label(g,m[0]+8,m[1]+12,'바닥 (1, 1)',U.cssv('--gfp'));});
+function up64(){var z=Lf(w64[0],w64[1]),gr=[-(w64[0]-1),-2*(w64[1]-1)];$('#m64a').textContent='('+fmt(w64[0],1)+', '+fmt(w64[1],1)+')';$('#m64b').textContent=fmt(z,2);$('#m64c').textContent='('+fmt(gr[0],1)+', '+fmt(gr[1],1)+')';$('#m64d').textContent=fmt(SP.dist(w64,[1,1]),2);
+  U.ins($('#i64'),[['m','바닥은 모델의 숫자 두 개(w₁, w₂)로 만든 좌표평면, 높이는 그 자리에서의 오차입니다. 빨간 점이 "지금 모델은 어디에 있는가"의 답이에요.'],['a','주황 화살표는 가장 가파른 내리막. "내리막으로 한 걸음"을 여러 번 눌러 보세요. 화살표 방향을 정하는 도구가 미분이고, 이 걷기가 최적화입니다 → 자매편 <a href="https://adminmrobo.github.io/optimization_3d_map/first_step_0.html">최적화 첫걸음</a>']]);S64.dirty=true;}
+rng('r64a',function(v){w64[0]=v;up64();},function(v){return fmt(v,1);});rng('r64b',function(v){w64[1]=v;up64();},function(v){return fmt(v,1);});
+$('#b64').onclick=function(){var gr=[-(w64[0]-1),-2*(w64[1]-1)];w64=[w64[0]+0.25*gr[0],w64[1]+0.25*gr[1]];$('#r64a').value=w64[0];$('#r64b').value=w64[1];$('#r64av').textContent=fmt(w64[0],1);$('#r64bv').textContent=fmt(w64[1],1);up64();};
+/* 부록 게임 */
+var GK=[{q:[30,200],m:'raw',t:'원래 단위로 재는 담당자'},{q:[30,200],m:'z',t:'표준화 자로 재는 담당자'},{q:[42,330],m:'z',t:'새 손님 (42세, 330천 원)'},{q:[55,170],m:'raw',t:'새 손님 (55세, 170천 원)'}];
+var pickA=-1,G;
+var vA=V($('#cvA'),function(){var i=G?G.cur():0,r=GK[i];var M=cmap($('#cvA'),r.m,r.q,G&&G.ok?[G.ok]:[],pickA);});
+SP.onPick($('#cvA'),function(px,py){var i=G.cur(),r=GK[i],P=r.m==='z'?SP.Plane($('#cvA'),{xr:[-2.5,2.5],yr:[-2.5,2.5]}):SP.Plane($('#cvA'),{xr:[0,480],yr:[0,480]});var best=-1,bd=1e9;
+  PT.forEach(function(p,k){var pp=r.m==='z'?zz(p):p,d=Math.hypot(P.X(pp[0])-px,P.Y(pp[1])-py);if(d<bd){bd=d;best=k;}});if(bd>28)return;pickA=best;G.touch();upA();vA.dirty=true;});
+function upA(){var i=G?G.cur():0,r=GK[i];$('#mAa').textContent=r.m==='z'?'표준화 자':'원래 단위';$('#mAb').textContent='('+r.q[0]+'세, '+r.q[1]+')';$('#mAc').textContent=pickA<0?'—':CU[pickA][0];
+  $('#mAd').textContent=pickA<0?'—':fmt(r.m==='z'?SP.dist(zz(PT[pickA]),zz(r.q)):SP.dist(PT[pickA],r.q),2);}
+G=PG.Rounds({el:'#gA',n:GK.length,title:function(i){return GK[i].t;},ask:function(i){var r=GK[i];return '<p>새 손님 Q ('+r.q[0]+'세, 월 '+r.q[1]+'천 원). <b>'+(r.m==='z'?'표준화 자':'원래 단위 (세, 천 원)')+'</b>로 잴 때 가장 가까운 고객을 누르세요.</p>';},
+  setup:function(i){pickA=-1;G&&(G.ok=null);upA();vA.dirty=true;},
+  judge:function(i){var r=GK[i],k=rank(r.q,r.m),ok=pickA===k[0][0];if(ok){G.ok=pickA;vA.dirty=true;}
+    var why=['원래 단위에서는 구매액 차이가 거리를 거의 다 정해서 52세 B가 가장 가깝게 나옵니다.','표준화 자에서는 31세·260천 원인 A가 가장 가깝습니다. 1판과 같은 손님인데 자만 바꿨어요.','원래 단위라면 J(12.8)가 가장 가깝지만, 표준화 자에서는 D가 이깁니다.','이 손님은 원래 단위로도 F, 표준화해도 F. 자를 바꿔도 답이 같은 경우도 있어요.'][i];
+    return [ok,ok?why:'가장 가까운 고객이 아니에요. '+CU[pickA][0]+'까지 '+fmt(k.filter(function(x){return x[0]===pickA;})[0][1],2)+', 더 가까운 고객이 있습니다. 붉은 원 안쪽을 찾아보세요.',CU[pickA]?CU[pickA][0]:'—'];}});
+upA();
+
+U.Gloss({"특성 공간": ["특성 공간", "AI", "데이터의 열(특성)을 축으로 삼은 공간. 줄 하나가 점 하나."], "표준화": ["표준화", "통계", "평균을 빼고 표준편차로 나누어 단위를 지운 값."], "KNN": ["KNN (k-최근접 이웃)", "AI", "가장 가까운 점 k개를 보고 판단하는 방법."], "임베딩": ["임베딩", "AI", "문장·사진을 숫자 수백~수천 개(고차원 점)로 바꾼 것."], "정규화": ["정규화 (min-max)", "통계", "값의 범위를 0~1로 맞추는 일."], "가중치": ["가중치", "AI", "모델이 배우는 숫자."], "군집": ["군집", "AI", "가까운 점끼리 묶는 일."], "벡터 DB": ["벡터 DB", "AI", "임베딩 점을 저장하고 가까운 점을 빨리 찾는 데이터베이스."]},["특성 공간", "표준화", "KNN", "임베딩", "가중치"]);
+U.Study({quiz:{"s61": [{"q": "고객 표에 열이 다섯 개면 각 고객은 몇 차원 공간의 점인가?", "o": ["5차원", "2차원", "1차원"], "a": 0, "why": "열 하나가 축 하나입니다.", "hint": "열 수 = 축 수."}], "s62": [{"q": "나이(세)와 연봉(만 원)으로 거리를 잴 때 먼저 할 일은?", "o": ["열마다 표준화해 단위를 맞춘다", "연봉을 그대로 두고 나이만 지운다", "두 열을 그냥 더한다"], "a": 0, "why": "숫자 크기가 큰 연봉이 거리를 혼자 정하지 않도록 자를 맞춥니다.", "hint": "6.2 실험의 \"표준화 자\" 버튼."}], "s63": [{"q": "여섯 축의 차이가 모두 1이면 거리는?", "o": ["√6 ≈ 2.45", "6", "1"], "a": 0, "why": "1² × 6 = 6, √6.", "hint": "제곱해서 더하고 루트."}], "s64": [{"q": "6.4 그림에서 \"나는 어디에 있는가\"의 답은?", "o": ["모델이 지금 쓰는 가중치 (w₁, w₂)", "오차의 높이", "바닥 (1, 1)"], "a": 0, "why": "바닥 좌표가 모델의 숫자, 높이가 그 숫자의 오차입니다.", "hint": "빨간 점의 바닥 좌표."}]}});
+U.start();
+})();
+</script>
+</body>
+</html>
