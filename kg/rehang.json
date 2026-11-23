@@ -1,0 +1,298 @@
+{
+ "version": "1.0",
+ "made": "2026-11-24",
+ "via": "rehang-2026-11-24",
+ "domains": [
+  "geom",
+  "math"
+ ],
+ "note": "분야 뼈대 주제에 다시 걸기(ai-lab-retrofit 15장). links는 자동 후보이며 틀린 줄은 지우면 된다. 빌드 스크립트가 있는 저장소는 빌드 끝에 rehang.apply_overlay()가 이 파일을 적용한다.",
+ "topics": {
+  "lab:topic/coordinates": {
+   "ko": "좌표계",
+   "en": "Coordinate systems",
+   "domain": [
+    "geom"
+   ],
+   "level": 1
+  },
+  "lab:topic/distance-angle": {
+   "ko": "거리와 각",
+   "en": "Distance and angle",
+   "domain": [
+    "geom"
+   ],
+   "level": 1
+  },
+  "lab:topic/embedding-space": {
+   "ko": "임베딩 공간",
+   "en": "Embedding space",
+   "domain": [
+    "ai",
+    "dl"
+   ],
+   "level": 3
+  },
+  "lab:topic/high-dim-geometry": {
+   "ko": "고차원 공간의 기하",
+   "en": "Geometry of high-dimensional space",
+   "domain": [
+    "geom"
+   ],
+   "level": 1
+  },
+  "lab:topic/knn": {
+   "ko": "k-최근접 이웃",
+   "en": "k-nearest neighbors",
+   "domain": [
+    "ai",
+    "ml"
+   ],
+   "level": 2
+  },
+  "lab:topic/metric-space": {
+   "ko": "거리공간",
+   "en": "Metric space",
+   "domain": [
+    "geom"
+   ],
+   "level": 2
+  },
+  "lab:topic/projections": {
+   "ko": "사영",
+   "en": "Projections",
+   "domain": [
+    "geom"
+   ],
+   "level": 1
+  },
+  "lab:topic/transformations": {
+   "ko": "합동·닮음·변환",
+   "en": "Congruence, similarity and transformations",
+   "domain": [
+    "geom"
+   ],
+   "level": 1
+  },
+  "lab:topic/unconstrained-optimization": {
+   "ko": "제약 없는 최적화(1·2계 조건)",
+   "en": "Unconstrained optimization (first- and second-order conditions)",
+   "domain": [
+    "math"
+   ],
+   "level": 2
+  },
+  "lab:topic/vectors-geometry": {
+   "ko": "벡터와 내적의 기하",
+   "en": "Vectors and the geometry of inner products",
+   "domain": [
+    "geom"
+   ],
+   "level": 1
+  }
+ },
+ "links": {
+  "lab:concept/arc-length": {
+   "topic": "lab:topic/distance-angle",
+   "score": 3,
+   "why": "사람이 고름",
+   "ko": "호의 길이"
+  },
+  "lab:concept/coordinate-plane": {
+   "topic": "lab:topic/coordinates",
+   "score": 3,
+   "why": "사람이 고름",
+   "ko": "좌표평면"
+  },
+  "lab:concept/coordinate-system": {
+   "topic": "lab:topic/coordinates",
+   "score": 3,
+   "why": "이름 같음",
+   "ko": "좌표계"
+  },
+  "lab:concept/coordinate-transform": {
+   "topic": "lab:topic/transformations",
+   "score": 3,
+   "why": "사람이 고름",
+   "ko": "좌표 변환"
+  },
+  "lab:concept/cylindrical": {
+   "topic": "lab:topic/coordinates",
+   "score": 3,
+   "why": "사람이 고름",
+   "ko": "원통좌표"
+  },
+  "lab:concept/distance-1d": {
+   "topic": "lab:topic/distance-angle",
+   "score": 3,
+   "why": "사람이 고름",
+   "ko": "수직선 위의 거리"
+  },
+  "lab:concept/distance-3d": {
+   "topic": "lab:topic/distance-angle",
+   "score": 3,
+   "why": "사람이 고름",
+   "ko": "공간 거리"
+  },
+  "lab:concept/embedding": {
+   "topic": "lab:topic/embedding-space",
+   "score": 3,
+   "why": "사람이 고름",
+   "ko": "임베딩"
+  },
+  "lab:concept/equal-area": {
+   "topic": "lab:topic/projections",
+   "score": 3,
+   "why": "사람이 고름",
+   "ko": "넓이를 지키는 도법"
+  },
+  "lab:concept/euclidean-distance": {
+   "topic": "lab:topic/distance-angle",
+   "score": 3,
+   "why": "사람이 고름",
+   "ko": "직선 거리(유클리드 거리)"
+  },
+  "lab:concept/feature-space": {
+   "topic": "lab:topic/high-dim-geometry",
+   "score": 3,
+   "why": "사람이 고름",
+   "ko": "특성 공간"
+  },
+  "lab:concept/knn": {
+   "topic": "lab:topic/knn",
+   "score": 3,
+   "why": "사람이 고름",
+   "ko": "가장 가까운 이웃(KNN)"
+  },
+  "lab:concept/latitude-longitude": {
+   "topic": "lab:topic/coordinates",
+   "score": 3,
+   "why": "사람이 고름",
+   "ko": "위도·경도"
+  },
+  "lab:concept/loss-landscape": {
+   "topic": "lab:topic/unconstrained-optimization",
+   "score": 3,
+   "why": "사람이 고름",
+   "ko": "오차 지형"
+  },
+  "lab:concept/manhattan-distance": {
+   "topic": "lab:topic/metric-space",
+   "score": 3,
+   "why": "사람이 고름",
+   "ko": "골목 거리(맨해튼 거리)"
+  },
+  "lab:concept/map-projection": {
+   "topic": "lab:topic/projections",
+   "score": 3,
+   "why": "사람이 고름",
+   "ko": "지도 투영(도법)"
+  },
+  "lab:concept/mercator": {
+   "topic": "lab:topic/projections",
+   "score": 3,
+   "why": "사람이 고름",
+   "ko": "메르카토르 도법"
+  },
+  "lab:concept/n-dim-distance": {
+   "topic": "lab:topic/high-dim-geometry",
+   "score": 3,
+   "why": "사람이 고름",
+   "ko": "n차원 거리"
+  },
+  "lab:concept/number-line": {
+   "topic": "lab:topic/coordinates",
+   "score": 3,
+   "why": "사람이 고름",
+   "ko": "수직선"
+  },
+  "lab:concept/ordered-pair": {
+   "topic": "lab:topic/coordinates",
+   "score": 3,
+   "why": "사람이 고름",
+   "ko": "순서쌍"
+  },
+  "lab:concept/origin": {
+   "topic": "lab:topic/coordinates",
+   "score": 3,
+   "why": "사람이 고름",
+   "ko": "원점(기준점)"
+  },
+  "lab:concept/polar-coordinates": {
+   "topic": "lab:topic/coordinates",
+   "score": 3,
+   "why": "사람이 고름",
+   "ko": "극좌표"
+  },
+  "lab:concept/projection": {
+   "topic": "lab:topic/projections",
+   "score": 3,
+   "why": "사람이 고름",
+   "ko": "정사영(바닥 그림자)"
+  },
+  "lab:concept/radian": {
+   "topic": "lab:topic/distance-angle",
+   "score": 3,
+   "why": "사람이 고름",
+   "ko": "라디안"
+  },
+  "lab:concept/space-coordinates": {
+   "topic": "lab:topic/coordinates",
+   "score": 3,
+   "why": "사람이 고름",
+   "ko": "공간좌표"
+  },
+  "lab:concept/spherical": {
+   "topic": "lab:topic/coordinates",
+   "score": 3,
+   "why": "사람이 고름",
+   "ko": "구면좌표(지구본 자)"
+  },
+  "lab:concept/standardization": {
+   "topic": "lab:topic/high-dim-geometry",
+   "score": 3,
+   "why": "사람이 고름",
+   "ko": "표준화"
+  },
+  "lab:concept/standardization-distance": {
+   "topic": "lab:topic/high-dim-geometry",
+   "score": 3,
+   "why": "사람이 고름",
+   "ko": "표준화 후 거리"
+  },
+  "lab:concept/trig-conversion": {
+   "topic": "lab:topic/coordinates",
+   "score": 3,
+   "why": "사람이 고름",
+   "ko": "cos·sin 변환"
+  },
+  "lab:concept/trilateration": {
+   "topic": "lab:topic/distance-angle",
+   "score": 3,
+   "why": "사람이 고름",
+   "ko": "삼변측량"
+  },
+  "lab:concept/unit-change": {
+   "topic": "lab:topic/transformations",
+   "score": 3,
+   "why": "사람이 고름",
+   "ko": "눈금 바꾸기(선형 변환)"
+  },
+  "lab:concept/vector-2d": {
+   "topic": "lab:topic/vectors-geometry",
+   "score": 3,
+   "why": "사람이 고름",
+   "ko": "화살표(벡터)"
+  }
+ },
+ "retag": {
+  "from": [
+   "math",
+   "ai"
+  ],
+  "to": [
+   "geom",
+   "math"
+  ]
+ }
+}
